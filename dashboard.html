@@ -1621,6 +1621,16 @@
             
             taskModal.style.display = 'none';
         }
+// In your dashboard.html, replace the proceedPaymentBtn event listener with:
+document.getElementById('proceedPaymentBtn').addEventListener('click', function() {
+    if (selectedPackage) {
+        // Save selected package and redirect to packages page
+        localStorage.setItem('selectedPackage', selectedPackage);
+        window.location.href = `packages.html?package=${selectedPackage}`;
+    } else {
+        alert('Please select a package first.');
+    }
+});
     </script>
 </body>
 </html>

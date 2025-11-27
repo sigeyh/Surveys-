@@ -1060,183 +1060,6 @@
                         scale: 5
                     }
                 ]
-            },
-            {
-                id: 'ANNO-001',
-                title: 'Image Classification Task',
-                description: 'Categorize images based on their content. No prior experience required.',
-                category: 'annotation',
-                reward: 150,
-                duration: 7,
-                successRate: 99,
-                availability: 'Available now',
-                questions: [
-                    {
-                        type: 'classification',
-                        question: 'What is the main subject of this image?',
-                        image: 'placeholder.jpg',
-                        options: ['Person', 'Animal', 'Landscape', 'Building', 'Vehicle', 'Food']
-                    },
-                    {
-                        type: 'classification',
-                        question: 'What is the primary color in this image?',
-                        image: 'placeholder.jpg',
-                        options: ['Red', 'Blue', 'Green', 'Yellow', 'Black', 'White', 'Other']
-                    }
-                ]
-            },
-            {
-                id: 'ANNO-002',
-                title: 'Text Sentiment Analysis',
-                description: 'Read short texts and classify them as positive, negative, or neutral.',
-                category: 'annotation',
-                reward: 120,
-                duration: 5,
-                successRate: 97,
-                availability: 'Available now',
-                questions: [
-                    {
-                        type: 'multiple',
-                        question: 'What is the sentiment of this text: "The product arrived quickly and works perfectly!"',
-                        options: ['Positive', 'Negative', 'Neutral']
-                    },
-                    {
-                        type: 'multiple',
-                        question: 'What is the sentiment of this text: "I am very disappointed with the service I received."',
-                        options: ['Positive', 'Negative', 'Neutral']
-                    },
-                    {
-                        type: 'multiple',
-                        question: 'What is the sentiment of this text: "The package was delivered on Tuesday."',
-                        options: ['Positive', 'Negative', 'Neutral']
-                    }
-                ]
-            },
-            {
-                id: 'VIDEO-001',
-                title: 'Ad Feedback Collection',
-                description: 'Watch a short advertisement and answer questions about your impressions.',
-                category: 'video',
-                reward: 200,
-                duration: 8,
-                successRate: 96,
-                availability: 'Available now',
-                questions: [
-                    {
-                        type: 'rating',
-                        question: 'How engaging did you find this advertisement?',
-                        scale: 5
-                    },
-                    {
-                        type: 'text',
-                        question: 'What message do you think this ad is trying to convey?'
-                    },
-                    {
-                        type: 'multiple',
-                        question: 'Would this ad make you more likely to purchase the product?',
-                        options: ['Yes', 'No', 'Maybe']
-                    }
-                ]
-            },
-            {
-                id: 'SURV-003',
-                title: 'Social Media Usage Patterns',
-                description: 'Share information about your social media habits and preferences.',
-                category: 'survey',
-                reward: 110,
-                duration: 5,
-                successRate: 97,
-                availability: 'Available now',
-                questions: [
-                    {
-                        type: 'multiple',
-                        question: 'Which social media platform do you use most frequently?',
-                        options: ['Facebook', 'WhatsApp', 'Instagram', 'Twitter', 'TikTok', 'Other']
-                    },
-                    {
-                        type: 'text',
-                        question: 'What type of content do you enjoy most on social media?'
-                    },
-                    {
-                        type: 'rating',
-                        question: 'How much time do you spend on social media daily?',
-                        scale: 5
-                    }
-                ]
-            },
-            {
-                id: 'QUEST-003',
-                title: 'Education System Feedback',
-                description: 'Share your perspectives on the education system in Kenya.',
-                category: 'questionnaire',
-                reward: 170,
-                duration: 15,
-                successRate: 93,
-                availability: 'Available now',
-                questions: [
-                    {
-                        type: 'multiple',
-                        question: 'What is the highest level of education you have completed?',
-                        options: ['Primary', 'Secondary', 'Diploma', 'Bachelor\'s Degree', 'Master\'s Degree', 'PhD', 'Other']
-                    },
-                    {
-                        type: 'text',
-                        question: 'What changes would you suggest to improve the education system?'
-                    },
-                    {
-                        type: 'rating',
-                        question: 'How satisfied are you with the quality of education in Kenya?',
-                        scale: 5
-                    }
-                ]
-            },
-            {
-                id: 'ANNO-003',
-                title: 'Product Categorization',
-                description: 'Categorize products based on their descriptions and images.',
-                category: 'annotation',
-                reward: 130,
-                duration: 6,
-                successRate: 98,
-                availability: 'Available now',
-                questions: [
-                    {
-                        type: 'multiple',
-                        question: 'Which category best describes this product?',
-                        options: ['Electronics', 'Clothing', 'Home & Garden', 'Beauty & Personal Care', 'Sports & Outdoors', 'Other']
-                    },
-                    {
-                        type: 'multiple',
-                        question: 'What is the primary use of this product?',
-                        options: ['Entertainment', 'Work', 'Health', 'Education', 'Home Maintenance', 'Other']
-                    }
-                ]
-            },
-            {
-                id: 'VIDEO-002',
-                title: 'Content Review',
-                description: 'Watch a short video clip and provide feedback on its content.',
-                category: 'video',
-                reward: 180,
-                duration: 7,
-                successRate: 95,
-                availability: 'Available now',
-                questions: [
-                    {
-                        type: 'rating',
-                        question: 'How informative was this video?',
-                        scale: 5
-                    },
-                    {
-                        type: 'text',
-                        question: 'What was the main takeaway from this video?'
-                    },
-                    {
-                        type: 'multiple',
-                        question: 'Would you recommend this video to others?',
-                        options: ['Yes', 'No', 'Maybe']
-                    }
-                ]
             }
         ];
 
@@ -1275,13 +1098,13 @@
             const isActivated = localStorage.getItem('accountActivated') === 'true';
             if (!isActivated) {
                 alert('Please activate your account to access tasks.');
-                window.location.href = packages.html';
+                window.location.href = 'deposit.html';
                 return;
             }
 
             // Load user stats
             const balance = localStorage.getItem('userBalance') || '0';
-            const completed = localStorage.getItem('completedTasks') || '0';
+            const completed = parseInt(localStorage.getItem('completedTasks') || '0');
             const rate = localStorage.getItem('successRate') || '0';
 
             userBalance.textContent = parseInt(balance).toLocaleString();
@@ -1290,7 +1113,7 @@
             availableTasks.textContent = tasks.length;
 
             // Update task limit indicator
-            updateTaskLimitIndicator(parseInt(completed));
+            updateTaskLimitIndicator(completed);
 
             // Display tasks
             displayTasks(tasks);
@@ -1301,8 +1124,8 @@
             // Initialize touch device detection
             initTouchDevice();
 
-            // Check if upgrade is required on page load
-            checkUpgradeRequirement();
+            // IMPORTANT: Remove the automatic upgrade modal check on page load
+            // This ensures the modal doesn't appear immediately when user signs in
         });
 
         // Update task limit indicator
@@ -1485,16 +1308,6 @@
             }
         }
 
-        // Check if upgrade is required on page load
-        function checkUpgradeRequirement() {
-            const completed = parseInt(localStorage.getItem('completedTasks') || '0');
-            const isUpgraded = localStorage.getItem('userUpgraded') === 'true';
-            
-            if (completed >= 3 && !isUpgraded) {
-                showUpgradeModal();
-            }
-        }
-
         // Show upgrade modal (cannot be bypassed)
         function showUpgradeModal() {
             // Set flag to prevent bypassing
@@ -1626,7 +1439,7 @@
                 alert(`Task completed successfully! You've earned KSH ${currentTask.reward}.`);
 
                 // Check if user has reached the 3 task limit
-                if (completed >= 3) {
+                if (completed === 3) {
                     // Force show upgrade modal immediately after 3rd task
                     setTimeout(() => {
                         showUpgradeModal();

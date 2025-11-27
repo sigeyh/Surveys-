@@ -46,7 +46,7 @@
             text-align: center;
         }
         
-        .auth-header h2 {
+        .auth-header h1 {
             font-size: 1.8rem;
             margin-bottom: 5px;
         }
@@ -145,6 +145,15 @@
             box-shadow: 0 5px 15px rgba(74, 107, 255, 0.4);
         }
         
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn:focus {
+            outline: 2px solid #4a6bff;
+            outline-offset: 2px;
+        }
+        
         .auth-footer {
             text-align: center;
             margin-top: 20px;
@@ -194,6 +203,59 @@
             transition: width 0.5s;
         }
         
+        .password-strength {
+            margin-top: 5px;
+            font-size: 0.8rem;
+        }
+        
+        .strength-weak {
+            color: #e74c3c;
+        }
+        
+        .strength-medium {
+            color: #f39c12;
+        }
+        
+        .strength-strong {
+            color: #2ecc71;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+        }
+        
+        .password-container {
+            position: relative;
+        }
+        
+        .password-container input {
+            padding-right: 45px;
+        }
+        
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 10px;
+            background: #4a6bff;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+        
+        .skip-link:focus {
+            top: 10px;
+        }
+        
         @media (max-width: 576px) {
             .auth-container {
                 border-radius: 10px;
@@ -206,74 +268,111 @@
             .auth-body {
                 padding: 20px;
             }
+            
+            .auth-header h1 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .auth-container {
+                border: 2px solid #000;
+            }
+            
+            .btn {
+                border: 2px solid #000;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <div class="container">
-        <div class="auth-container">
+        <div class="auth-container" role="main" id="main-content">
             <div class="auth-header">
-                <h2>Create Your SurveyPro Account</h2>
+                <h1>Create Your SurveyPro Account</h1>
                 <p>Start earning money in minutes</p>
             </div>
             
             <div class="auth-body">
-                <div class="success-message" id="successMessage">
-                    <i class="fas fa-check-circle"></i> Account created successfully! Redirecting to dashboard...
+                <div class="success-message" id="successMessage" role="alert" aria-live="polite">
+                    <i class="fas fa-check-circle" aria-hidden="true"></i> Account created successfully! Redirecting to dashboard...
                 </div>
                 
-                <div class="progress-bar">
+                <div class="progress-bar" aria-hidden="true">
                     <div class="progress" id="progressBar"></div>
                 </div>
                 
-                <form class="auth-form" id="signupForm">
+                <form class="auth-form" id="signupForm" novalidate>
                     <div class="form-group">
                         <label for="fullName">Full Name</label>
-                        <input type="text" id="fullName" placeholder="Enter your full name" required>
-                        <div class="error-message" id="nameError">Please enter your full name</div>
+                        <input type="text" id="fullName" placeholder="Enter your full name" required aria-describedby="nameError">
+                        <div class="error-message" id="nameError" role="alert">Please enter your full name</div>
                     </div>
                     
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" placeholder="Enter your email" required>
-                        <div class="error-message" id="emailError">Please enter a valid email address</div>
+                        <input type="email" id="email" placeholder="Enter your email" required aria-describedby="emailError">
+                        <div class="error-message" id="emailError" role="alert">Please enter a valid email address</div>
                     </div>
                     
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
                         <div class="phone-input">
-                            <span class="phone-prefix">+254</span>
-                            <input type="tel" id="phone" placeholder="7XX XXX XXX" pattern="[0-9]{9}" required>
+                            <span class="phone-prefix" aria-hidden="true">+254</span>
+                            <input type="tel" id="phone" placeholder="7XX XXX XXX" pattern="[0-9]{9}" required aria-describedby="phoneError">
                         </div>
-                        <div class="error-message" id="phoneError">Please enter a valid 9-digit phone number</div>
+                        <div class="error-message" id="phoneError" role="alert">Please enter a valid 9-digit phone number</div>
                     </div>
                     
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" id="password" placeholder="Create a password" required>
-                        <div class="password-hint">Use at least 8 characters with a mix of letters and numbers</div>
-                        <div class="error-message" id="passwordError">Password must be at least 8 characters</div>
+                        <div class="password-container">
+                            <input type="password" id="password" placeholder="Create a password" required aria-describedby="passwordError passwordHint passwordStrength">
+                            <button type="button" class="password-toggle" id="passwordToggle" aria-label="Show password">
+                                <i class="fas fa-eye" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="password-hint" id="passwordHint">Use at least 8 characters with a mix of letters and numbers</div>
+                        <div class="password-strength" id="passwordStrength" aria-live="polite"></div>
+                        <div class="error-message" id="passwordError" role="alert">Password must be at least 8 characters with letters and numbers</div>
                     </div>
                     
                     <div class="form-group">
                         <label for="confirmPassword">Confirm Password</label>
-                        <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
-                        <div class="error-message" id="confirmPasswordError">Passwords do not match</div>
+                        <div class="password-container">
+                            <input type="password" id="confirmPassword" placeholder="Confirm your password" required aria-describedby="confirmPasswordError">
+                            <button type="button" class="password-toggle" id="confirmPasswordToggle" aria-label="Show password">
+                                <i class="fas fa-eye" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="error-message" id="confirmPasswordError" role="alert">Passwords do not match</div>
                     </div>
                     
                     <div class="form-group">
                         <div class="checkbox-group">
-                            <input type="checkbox" id="terms" required>
+                            <input type="checkbox" id="terms" required aria-describedby="termsError">
                             <label for="terms">
                                 I agree to the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a>
                             </label>
                         </div>
-                        <div class="error-message" id="termsError">You must agree to the terms and conditions</div>
+                        <div class="error-message" id="termsError" role="alert">You must agree to the terms and conditions</div>
                     </div>
                     
                     <button type="submit" class="btn" id="submitBtn">
                         <span id="btnText">Create Account</span>
-                        <i class="fas fa-spinner fa-spin" id="btnSpinner" style="display: none;"></i>
+                        <i class="fas fa-spinner fa-spin" id="btnSpinner" style="display: none;" aria-hidden="true"></i>
                     </button>
                 </form>
                 
@@ -292,6 +391,49 @@
             const submitBtn = document.getElementById('submitBtn');
             const btnText = document.getElementById('btnText');
             const btnSpinner = document.getElementById('btnSpinner');
+            const passwordToggle = document.getElementById('passwordToggle');
+            const confirmPasswordToggle = document.getElementById('confirmPasswordToggle');
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const passwordStrength = document.getElementById('passwordStrength');
+            
+            // Password toggle functionality
+            passwordToggle.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.setAttribute('aria-label', type === 'password' ? 'Show password' : 'Hide password');
+                this.innerHTML = type === 'password' ? '<i class="fas fa-eye" aria-hidden="true"></i>' : '<i class="fas fa-eye-slash" aria-hidden="true"></i>';
+            });
+            
+            confirmPasswordToggle.addEventListener('click', function() {
+                const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                confirmPasswordInput.setAttribute('type', type);
+                this.setAttribute('aria-label', type === 'password' ? 'Show password' : 'Hide password');
+                this.innerHTML = type === 'password' ? '<i class="fas fa-eye" aria-hidden="true"></i>' : '<i class="fas fa-eye-slash" aria-hidden="true"></i>';
+            });
+            
+            // Password strength indicator
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                let strength = '';
+                let strengthClass = '';
+                
+                if (password.length === 0) {
+                    strength = '';
+                } else if (password.length < 8) {
+                    strength = 'Weak';
+                    strengthClass = 'strength-weak';
+                } else if (password.length < 12 || !/(?=.*[a-zA-Z])(?=.*[0-9])/.test(password)) {
+                    strength = 'Medium';
+                    strengthClass = 'strength-medium';
+                } else {
+                    strength = 'Strong';
+                    strengthClass = 'strength-strong';
+                }
+                
+                passwordStrength.textContent = strength ? `Password strength: ${strength}` : '';
+                passwordStrength.className = `password-strength ${strengthClass}`;
+            });
             
             // Form validation
             form.addEventListener('submit', function(e) {
@@ -304,9 +446,11 @@
                 const nameError = document.getElementById('nameError');
                 if (fullName.value.trim() === '') {
                     nameError.style.display = 'block';
+                    fullName.setAttribute('aria-invalid', 'true');
                     isValid = false;
                 } else {
                     nameError.style.display = 'none';
+                    fullName.setAttribute('aria-invalid', 'false');
                 }
                 
                 // Validate email
@@ -315,9 +459,11 @@
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!emailRegex.test(email.value)) {
                     emailError.style.display = 'block';
+                    email.setAttribute('aria-invalid', 'true');
                     isValid = false;
                 } else {
                     emailError.style.display = 'none';
+                    email.setAttribute('aria-invalid', 'false');
                 }
                 
                 // Validate phone
@@ -326,19 +472,24 @@
                 const phoneRegex = /^[0-9]{9}$/;
                 if (!phoneRegex.test(phone.value)) {
                     phoneError.style.display = 'block';
+                    phone.setAttribute('aria-invalid', 'true');
                     isValid = false;
                 } else {
                     phoneError.style.display = 'none';
+                    phone.setAttribute('aria-invalid', 'false');
                 }
                 
                 // Validate password
                 const password = document.getElementById('password');
                 const passwordError = document.getElementById('passwordError');
-                if (password.value.length < 8) {
+                const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/;
+                if (!passwordRegex.test(password.value)) {
                     passwordError.style.display = 'block';
+                    password.setAttribute('aria-invalid', 'true');
                     isValid = false;
                 } else {
                     passwordError.style.display = 'none';
+                    password.setAttribute('aria-invalid', 'false');
                 }
                 
                 // Validate confirm password
@@ -346,9 +497,11 @@
                 const confirmPasswordError = document.getElementById('confirmPasswordError');
                 if (password.value !== confirmPassword.value) {
                     confirmPasswordError.style.display = 'block';
+                    confirmPassword.setAttribute('aria-invalid', 'true');
                     isValid = false;
                 } else {
                     confirmPasswordError.style.display = 'none';
+                    confirmPassword.setAttribute('aria-invalid', 'false');
                 }
                 
                 // Validate terms
@@ -356,9 +509,11 @@
                 const termsError = document.getElementById('termsError');
                 if (!terms.checked) {
                     termsError.style.display = 'block';
+                    terms.setAttribute('aria-invalid', 'true');
                     isValid = false;
                 } else {
                     termsError.style.display = 'none';
+                    terms.setAttribute('aria-invalid', 'false');
                 }
                 
                 if (isValid) {
@@ -366,6 +521,7 @@
                     submitBtn.disabled = true;
                     btnText.style.display = 'none';
                     btnSpinner.style.display = 'inline-block';
+                    submitBtn.setAttribute('aria-label', 'Creating account, please wait');
                     
                     // Simulate API call with progress bar
                     let progress = 0;
@@ -385,8 +541,16 @@
                             };
                             localStorage.setItem('surveyProUser', JSON.stringify(userData));
                             
+                            // Set initial user stats
+                            localStorage.setItem('accountActivated', 'true');
+                            localStorage.setItem('userBalance', '0');
+                            localStorage.setItem('completedTasks', '0');
+                            localStorage.setItem('successRate', '0');
+                            localStorage.setItem('totalEarnings', '0');
+                            
                             // Show success message
                             successMessage.style.display = 'block';
+                            successMessage.setAttribute('aria-live', 'assertive');
                             
                             // Redirect to dashboard after 2 seconds
                             setTimeout(() => {
@@ -398,16 +562,41 @@
             });
             
             // Real-time validation for password match
-            const password = document.getElementById('password');
-            const confirmPassword = document.getElementById('confirmPassword');
-            const confirmPasswordError = document.getElementById('confirmPasswordError');
-            
-            confirmPassword.addEventListener('input', function() {
-                if (password.value !== confirmPassword.value && confirmPassword.value.length > 0) {
+            confirmPasswordInput.addEventListener('input', function() {
+                if (passwordInput.value !== confirmPasswordInput.value && confirmPasswordInput.value.length > 0) {
                     confirmPasswordError.style.display = 'block';
+                    confirmPasswordInput.setAttribute('aria-invalid', 'true');
                 } else {
                     confirmPasswordError.style.display = 'none';
+                    confirmPasswordInput.setAttribute('aria-invalid', 'false');
                 }
+            });
+            
+            // Real-time validation for other fields
+            const fields = ['fullName', 'email', 'phone', 'password'];
+            fields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                const error = document.getElementById(fieldId + 'Error');
+                
+                field.addEventListener('blur', function() {
+                    // Re-validate field on blur
+                    if (fieldId === 'fullName' && field.value.trim() === '') {
+                        error.style.display = 'block';
+                        field.setAttribute('aria-invalid', 'true');
+                    } else if (fieldId === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) {
+                        error.style.display = 'block';
+                        field.setAttribute('aria-invalid', 'true');
+                    } else if (fieldId === 'phone' && !/^[0-9]{9}$/.test(field.value)) {
+                        error.style.display = 'block';
+                        field.setAttribute('aria-invalid', 'true');
+                    } else if (fieldId === 'password' && !/^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/.test(field.value)) {
+                        error.style.display = 'block';
+                        field.setAttribute('aria-invalid', 'true');
+                    } else {
+                        error.style.display = 'none';
+                        field.setAttribute('aria-invalid', 'false');
+                    }
+                });
             });
         });
     </script>

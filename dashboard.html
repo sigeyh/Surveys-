@@ -10,29 +10,28 @@
     <meta name="keywords" content="surveys Kenya, earn money online Kenya, online jobs Kenya, data annotation, questionnaires, mobile money Kenya, M-Pesa, online tasks">
     <meta name="author" content="SurveyPro">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="SurveyPro - Complete Tasks & Earn Money Online | Kenya">
     <meta property="og:description" content="Join SurveyPro Kenya! Complete surveys and tasks to earn real money. Start with 3 free tasks, then upgrade for unlimited earnings.">
     <meta property="og:image" content="https://surveypro.co.ke/images/og-image.jpg">
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:title" content="SurveyPro - Complete Tasks & Earn Money Online | Kenya">
     <meta property="twitter:description" content="Join SurveyPro Kenya! Complete surveys and tasks to earn real money. Start with 3 free tasks, then upgrade for unlimited earnings.">
-    
+
     <!-- PWA & Mobile App Meta -->
     <meta name="theme-color" content="#4a6bff">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="SurveyPro">
     <meta name="mobile-web-app-capable" content="yes">
-    
+
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         :root {
             --primary: #4a6bff;
@@ -48,26 +47,26 @@
             --vh: 1vh;
             --animation-duration: 0.3s;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
             background-color: #f5f7fb;
             color: var(--dark);
             line-height: 1.6;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
+
         /* Header Styles */
         header {
             background: var(--gradient);
@@ -78,30 +77,30 @@
             top: 0;
             z-index: 1000;
         }
-        
+
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo {
             font-size: 28px;
             font-weight: bold;
             display: flex;
             align-items: center;
         }
-        
+
         .logo i {
             margin-right: 10px;
             font-size: 32px;
         }
-        
+
         .nav-links {
             display: flex;
             gap: 25px;
         }
-        
+
         .nav-links a {
             color: white;
             text-decoration: none;
@@ -110,24 +109,24 @@
             border-radius: 4px;
             transition: all 0.3s;
         }
-        
+
         .nav-links a:hover, .nav-links a.active {
             background: rgba(255,255,255,0.2);
         }
-        
+
         .user-info {
             display: flex;
             align-items: center;
             gap: 15px;
         }
-        
+
         .balance {
             background: rgba(255,255,255,0.2);
             padding: 8px 15px;
             border-radius: 20px;
             font-weight: 600;
         }
-        
+
         /* Dashboard Header */
         .dashboard-header {
             padding: 30px 0;
@@ -135,22 +134,22 @@
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .dashboard-title h1 {
             font-size: 32px;
             margin-bottom: 10px;
         }
-        
+
         .dashboard-title p {
             color: var(--gray);
             font-size: 18px;
         }
-        
+
         .dashboard-stats {
             display: flex;
             gap: 20px;
         }
-        
+
         .stat-box {
             background: white;
             padding: 20px;
@@ -159,19 +158,19 @@
             text-align: center;
             min-width: 150px;
         }
-        
+
         .stat-value {
             font-size: 24px;
             font-weight: bold;
             color: var(--primary);
             margin-bottom: 5px;
         }
-        
+
         .stat-label {
             font-size: 14px;
             color: var(--gray);
         }
-        
+
         /* Task Limit Indicator */
         .task-limit-indicator {
             background: var(--gradient-secondary);
@@ -182,12 +181,12 @@
             text-align: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        
+
         .task-limit-indicator h3 {
             margin-bottom: 10px;
             font-size: 18px;
         }
-        
+
         .progress-bar {
             background: rgba(255,255,255,0.3);
             height: 10px;
@@ -195,14 +194,14 @@
             margin: 10px 0;
             overflow: hidden;
         }
-        
+
         .progress {
             background: white;
             height: 100%;
             width: 0%;
             transition: width 0.5s ease;
         }
-        
+
         /* Tasks Filter */
         .tasks-filter {
             background: white;
@@ -211,13 +210,13 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             margin-bottom: 30px;
         }
-        
+
         .filter-options {
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
         }
-        
+
         .filter-btn {
             background: var(--light-gray);
             border: none;
@@ -227,17 +226,17 @@
             transition: all 0.3s;
             font-weight: 500;
         }
-        
+
         .filter-btn.active, .filter-btn:hover {
             background: var(--primary);
             color: white;
         }
-        
+
         .search-box {
             flex: 1;
             min-width: 250px;
         }
-        
+
         .search-box input {
             width: 100%;
             padding: 12px 15px;
@@ -245,7 +244,7 @@
             border-radius: 5px;
             font-size: 16px;
         }
-        
+
         /* Tasks Grid */
         .tasks-grid {
             display: grid;
@@ -253,7 +252,7 @@
             gap: 25px;
             margin-bottom: 40px;
         }
-        
+
         .task-card {
             background: white;
             border-radius: 10px;
@@ -261,12 +260,12 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        
+
         .task-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
-        
+
         .task-header {
             padding: 20px;
             border-bottom: 1px solid var(--light-gray);
@@ -274,7 +273,7 @@
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .task-category {
             background: var(--light-gray);
             padding: 5px 10px;
@@ -282,59 +281,59 @@
             font-size: 12px;
             font-weight: 600;
         }
-        
+
         .task-category.survey {
             background: rgba(74, 107, 255, 0.1);
             color: var(--primary);
         }
-        
+
         .task-category.questionnaire {
             background: rgba(255, 126, 95, 0.1);
             color: var(--secondary);
         }
-        
+
         .task-category.annotation {
             background: rgba(40, 167, 69, 0.1);
             color: var(--success);
         }
-        
+
         .task-category.video {
             background: rgba(255, 193, 7, 0.1);
             color: #856404;
         }
-        
+
         .task-body {
             padding: 20px;
         }
-        
+
         .task-title {
             font-size: 18px;
             margin-bottom: 10px;
             color: var(--dark);
         }
-        
+
         .task-description {
             color: var(--gray);
             margin-bottom: 15px;
             font-size: 14px;
         }
-        
+
         .task-meta {
             display: flex;
             justify-content: space-between;
             margin-bottom: 20px;
         }
-        
+
         .task-reward {
             font-weight: bold;
             color: var(--primary);
         }
-        
+
         .task-duration, .task-success {
             color: var(--gray);
             font-size: 14px;
         }
-        
+
         .task-footer {
             padding: 15px 20px;
             background: var(--light);
@@ -342,12 +341,12 @@
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .task-availability {
             font-size: 12px;
             color: var(--gray);
         }
-        
+
         .btn {
             display: inline-block;
             background: var(--primary);
@@ -362,28 +361,28 @@
             transition: all 0.3s ease;
             text-decoration: none;
         }
-        
+
         .btn:hover {
             background: #3a5bef;
             transform: translateY(-2px);
         }
-        
+
         .btn-success {
             background: var(--success);
         }
-        
+
         .btn-success:hover {
             background: #218838;
         }
-        
+
         .btn-secondary {
             background: var(--secondary);
         }
-        
+
         .btn-secondary:hover {
             background: #ff6a4a;
         }
-        
+
         /* Task Modal */
         .modal {
             display: none;
@@ -396,7 +395,7 @@
             background-color: rgba(0,0,0,0.5);
             overflow-y: auto;
         }
-        
+
         .modal-content {
             background-color: white;
             margin: 5% auto;
@@ -408,7 +407,7 @@
             overflow-y: auto;
             position: relative;
         }
-        
+
         .close-modal {
             position: absolute;
             top: 15px;
@@ -418,70 +417,70 @@
             cursor: pointer;
             color: var(--gray);
         }
-        
+
         .close-modal:hover {
             color: var(--dark);
         }
-        
+
         .modal-header {
             margin-bottom: 20px;
             padding-bottom: 15px;
             border-bottom: 1px solid var(--light-gray);
         }
-        
+
         .modal-title {
             font-size: 24px;
             margin-bottom: 10px;
         }
-        
+
         .modal-meta {
             display: flex;
             gap: 20px;
             margin-bottom: 15px;
         }
-        
+
         .modal-reward {
             font-weight: bold;
             color: var(--primary);
         }
-        
+
         .modal-description {
             margin-bottom: 20px;
             color: var(--gray);
         }
-        
+
         .task-questions {
             margin-bottom: 30px;
         }
-        
+
         .question {
             margin-bottom: 25px;
             padding-bottom: 20px;
             border-bottom: 1px solid var(--light-gray);
         }
-        
+
         .question-title {
             font-size: 18px;
             margin-bottom: 15px;
             color: var(--dark);
         }
-        
+
         .question-options {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
-        
+
         .option {
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        
+
         .option input {
             margin: 0;
         }
-        
+
         .text-answer {
             width: 100%;
             padding: 12px 15px;
@@ -491,30 +490,30 @@
             resize: vertical;
             min-height: 100px;
         }
-        
+
         .rating-scale {
             display: flex;
             gap: 10px;
             margin-top: 10px;
         }
-        
+
         .rating-option {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        
+
         .rating-option input {
             margin-bottom: 5px;
         }
-        
+
         .modal-actions {
             display: flex;
             gap: 15px;
             justify-content: flex-end;
             margin-top: 20px;
         }
-        
+
         /* Upgrade Modal */
         .upgrade-modal-content {
             background-color: white;
@@ -526,32 +525,32 @@
             position: relative;
             text-align: center;
         }
-        
+
         .upgrade-icon {
             font-size: 60px;
             color: var(--primary);
             margin-bottom: 20px;
         }
-        
+
         .upgrade-title {
             font-size: 28px;
             margin-bottom: 15px;
             color: var(--dark);
         }
-        
+
         .upgrade-subtitle {
             font-size: 18px;
             color: var(--gray);
             margin-bottom: 30px;
         }
-        
+
         .upgrade-packages {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
-        
+
         .package-card {
             background: white;
             border: 2px solid var(--light-gray);
@@ -560,47 +559,47 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-        
+
         .package-card:hover, .package-card.selected {
             border-color: var(--primary);
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-        
+
         .package-price {
             font-size: 24px;
             font-weight: bold;
             color: var(--primary);
             margin-bottom: 10px;
         }
-        
+
         .package-title {
             font-size: 18px;
             margin-bottom: 10px;
         }
-        
+
         .package-features {
             list-style: none;
             font-size: 14px;
             color: var(--gray);
             margin-bottom: 15px;
         }
-        
+
         .package-features li {
             margin-bottom: 5px;
         }
-        
+
         .package-features li i {
             color: var(--success);
             margin-right: 5px;
         }
-        
+
         .upgrade-actions {
             display: flex;
             gap: 15px;
             justify-content: center;
         }
-        
+
         /* Pagination */
         .pagination {
             display: flex;
@@ -608,7 +607,7 @@
             gap: 10px;
             margin-bottom: 40px;
         }
-        
+
         .page-btn {
             width: 40px;
             height: 40px;
@@ -621,13 +620,13 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-        
+
         .page-btn.active, .page-btn:hover {
             background: var(--primary);
             color: white;
             border-color: var(--primary);
         }
-        
+
         /* Footer */
         footer {
             background: var(--dark);
@@ -635,37 +634,37 @@
             padding: 40px 0 20px;
             margin-top: 40px;
         }
-        
+
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
             margin-bottom: 40px;
         }
-        
+
         .footer-column h3 {
             margin-bottom: 20px;
             font-size: 18px;
         }
-        
+
         .footer-links {
             list-style: none;
         }
-        
+
         .footer-links li {
             margin-bottom: 10px;
         }
-        
+
         .footer-links a {
             color: #aaa;
             text-decoration: none;
             transition: color 0.3s;
         }
-        
+
         .footer-links a:hover {
             color: white;
         }
-        
+
         .footer-bottom {
             text-align: center;
             padding-top: 20px;
@@ -673,54 +672,54 @@
             color: #aaa;
             font-size: 14px;
         }
-        
+
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
                 gap: 15px;
             }
-            
+
             .nav-links {
                 flex-wrap: wrap;
                 justify-content: center;
             }
-            
+
             .dashboard-header {
                 flex-direction: column;
                 gap: 20px;
                 text-align: center;
             }
-            
+
             .dashboard-stats {
                 width: 100%;
                 justify-content: center;
             }
-            
+
             .tasks-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .filter-options {
                 flex-direction: column;
             }
-            
+
             .search-box {
                 min-width: 100%;
             }
-            
+
             .upgrade-packages {
                 grid-template-columns: 1fr;
             }
         }
-        
+
         /* Touch device optimizations */
         .touch-device .btn,
         .touch-device .task-card,
         .touch-device .package-card {
             transition: transform 0.1s ease, box-shadow 0.1s ease;
         }
-        
+
         .touch-device .btn:active,
         .touch-device .task-card:active,
         .touch-device .package-card:active,
@@ -811,7 +810,7 @@
             <div class="tasks-grid" id="tasksContainer">
                 <!-- Tasks will be dynamically loaded here -->
             </div>
-            
+
             <!-- Pagination -->
             <div class="pagination">
                 <button class="page-btn active">1</button>
@@ -836,11 +835,11 @@
                 </div>
                 <p class="modal-description" id="modalTaskDescription">Task description will appear here.</p>
             </div>
-            
+
             <div class="task-questions" id="taskQuestions">
                 <!-- Task questions will be dynamically loaded here -->
             </div>
-            
+
             <div class="modal-actions">
                 <button class="btn btn-secondary" id="cancelTaskBtn">Cancel</button>
                 <button class="btn" id="submitTaskBtn">Submit Task</button>
@@ -851,13 +850,13 @@
     <!-- Upgrade Modal -->
     <div id="upgradeModal" class="modal">
         <div class="upgrade-modal-content">
-            <span class="close-modal">&times;</span>
+            <!-- Removed the close button to prevent bypassing -->
             <div class="upgrade-icon">
                 <i class="fas fa-crown"></i>
             </div>
-            <h2 class="upgrade-title">Upgrade to Premium</h2>
-            <p class="upgrade-subtitle">You've completed your 3 free tasks. Upgrade now for unlimited access!</p>
-            
+            <h2 class="upgrade-title">Upgrade to Premium Required</h2>
+            <p class="upgrade-subtitle">You've completed your 3 free tasks. Upgrade now to continue earning!</p>
+
             <div class="upgrade-packages">
                 <div class="package-card" data-price="200">
                     <div class="package-price">KSH 200</div>
@@ -906,10 +905,10 @@
                     <button class="btn select-package-btn">Select</button>
                 </div>
             </div>
-            
+
             <div class="upgrade-actions">
-                <button class="btn btn-secondary" id="cancelUpgradeBtn">Maybe Later</button>
-                <button class="btn" id="proceedPaymentBtn">Proceed to Payment</button>
+                <!-- Removed the "Maybe Later" button to force payment -->
+                <button class="btn" id="proceedPaymentBtn" disabled>Proceed to Payment</button>
             </div>
         </div>
     </div>
@@ -1271,7 +1270,7 @@
                 }));
                 localStorage.setItem('accountActivated', 'true');
             }
-            
+
             // Check if account is activated
             const isActivated = localStorage.getItem('accountActivated') === 'true';
             if (!isActivated) {
@@ -1279,28 +1278,31 @@
                 window.location.href = 'deposit.html';
                 return;
             }
-            
+
             // Load user stats
             const balance = localStorage.getItem('userBalance') || '0';
             const completed = localStorage.getItem('completedTasks') || '0';
             const rate = localStorage.getItem('successRate') || '0';
-            
+
             userBalance.textContent = parseInt(balance).toLocaleString();
             completedTasks.textContent = completed;
             successRate.textContent = `${rate}%`;
             availableTasks.textContent = tasks.length;
-            
+
             // Update task limit indicator
             updateTaskLimitIndicator(parseInt(completed));
-            
+
             // Display tasks
             displayTasks(tasks);
-            
+
             // Setup event listeners
             setupEventListeners();
-            
+
             // Initialize touch device detection
             initTouchDevice();
+
+            // Check if upgrade is required on page load
+            checkUpgradeRequirement();
         });
 
         // Update task limit indicator
@@ -1308,11 +1310,11 @@
             if (completed > 0) {
                 taskLimitIndicator.style.display = 'block';
                 tasksCompleted.textContent = completed;
-                
+
                 // Update progress bar
                 const progressPercent = Math.min((completed / 3) * 100, 100);
                 taskProgress.style.width = `${progressPercent}%`;
-                
+
                 // Change color based on progress
                 if (completed >= 3) {
                     taskProgress.style.background = '#ff7e5f';
@@ -1325,17 +1327,17 @@
         // Display tasks in the grid
         function displayTasks(tasksToDisplay) {
             tasksContainer.innerHTML = '';
-            
+
             if (tasksToDisplay.length === 0) {
                 tasksContainer.innerHTML = '<div class="no-tasks">No tasks found matching your criteria.</div>';
                 return;
             }
-            
+
             tasksToDisplay.forEach(task => {
                 const taskCard = document.createElement('div');
                 taskCard.className = 'task-card';
                 taskCard.setAttribute('data-category', task.category);
-                
+
                 taskCard.innerHTML = `
                     <div class="task-header">
                         <span class="task-category ${task.category}">${getCategoryLabel(task.category)}</span>
@@ -1355,10 +1357,10 @@
                         <button class="btn start-task-btn" data-task-id="${task.id}">Start Task</button>
                     </div>
                 `;
-                
+
                 tasksContainer.appendChild(taskCard);
             });
-            
+
             // Add event listeners to start task buttons
             document.querySelectorAll('.start-task-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
@@ -1385,11 +1387,11 @@
             filterButtons.forEach(btn => {
                 btn.addEventListener('click', function() {
                     const filter = this.getAttribute('data-filter');
-                    
+
                     // Update active button
                     filterButtons.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
-                    
+
                     // Filter tasks
                     if (filter === 'all') {
                         displayTasks(tasks);
@@ -1399,7 +1401,7 @@
                     }
                 });
             });
-            
+
             // Search functionality
             taskSearch.addEventListener('input', function() {
                 const searchTerm = this.value.toLowerCase();
@@ -1409,68 +1411,58 @@
                 );
                 displayTasks(filteredTasks);
             });
-            
+
             // Modal close buttons
             document.querySelectorAll('.close-modal').forEach(closeBtn => {
                 closeBtn.addEventListener('click', function() {
                     taskModal.style.display = 'none';
-                    upgradeModal.style.display = 'none';
                 });
             });
-            
+
             document.getElementById('cancelTaskBtn').addEventListener('click', function() {
                 taskModal.style.display = 'none';
             });
-            
+
             // Submit task button
             document.getElementById('submitTaskBtn').addEventListener('click', submitTask);
-            
+
             // Package selection
             document.querySelectorAll('.select-package-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const packageCard = this.closest('.package-card');
                     const price = packageCard.getAttribute('data-price');
-                    
+
                     // Remove selection from all packages
                     document.querySelectorAll('.package-card').forEach(card => {
                         card.classList.remove('selected');
                     });
-                    
+
                     // Select current package
                     packageCard.classList.add('selected');
                     selectedPackage = price;
-                    
+
                     // Enable proceed button
                     document.getElementById('proceedPaymentBtn').disabled = false;
                 });
             });
-            
-            // Upgrade modal buttons
-            document.getElementById('cancelUpgradeBtn').addEventListener('click', function() {
-                upgradeModal.style.display = 'none';
-            });
-            
+
+            // Upgrade modal payment button
             document.getElementById('proceedPaymentBtn').addEventListener('click', function() {
                 if (selectedPackage) {
-                    alert(`Proceeding to payment for KSH ${selectedPackage} package.`);
-                    // In a real app, you would redirect to payment gateway
-                    upgradeModal.style.display = 'none';
-                    
-                    // Mark user as upgraded (for demo purposes)
-                    localStorage.setItem('userUpgraded', 'true');
+                    // Save selected package and redirect to packages page
+                    localStorage.setItem('selectedPackage', selectedPackage);
+                    window.location.href = `packages.html?package=${selectedPackage}`;
                 } else {
                     alert('Please select a package first.');
                 }
             });
-            
-            // Close modals when clicking outside
+
+            // Close modals when clicking outside (except upgrade modal)
             window.addEventListener('click', function(event) {
                 if (event.target === taskModal) {
                     taskModal.style.display = 'none';
                 }
-                if (event.target === upgradeModal) {
-                    upgradeModal.style.display = 'none';
-                }
+                // Upgrade modal cannot be closed by clicking outside
             });
         }
 
@@ -1478,19 +1470,45 @@
         function initTouchDevice() {
             if ('ontouchstart' in window) {
                 document.documentElement.classList.add('touch-device');
-                
+
                 // Add touch feedback for buttons
                 const interactiveElements = document.querySelectorAll('.btn, .task-card, .package-card');
                 interactiveElements.forEach(el => {
                     el.addEventListener('touchstart', function() {
                         this.classList.add('touch-active');
                     });
-                    
+
                     el.addEventListener('touchend', function() {
                         this.classList.remove('touch-active');
                     });
                 });
             }
+        }
+
+        // Check if upgrade is required on page load
+        function checkUpgradeRequirement() {
+            const completed = parseInt(localStorage.getItem('completedTasks') || '0');
+            const isUpgraded = localStorage.getItem('userUpgraded') === 'true';
+            
+            if (completed >= 3 && !isUpgraded) {
+                showUpgradeModal();
+            }
+        }
+
+        // Show upgrade modal (cannot be bypassed)
+        function showUpgradeModal() {
+            // Set flag to prevent bypassing
+            localStorage.setItem('upgradeRequired', 'true');
+            
+            // Show the upgrade modal
+            upgradeModal.style.display = 'block';
+            
+            // Prevent closing the modal by clicking outside
+            window.addEventListener('click', function preventClose(event) {
+                if (event.target === upgradeModal) {
+                    event.stopPropagation();
+                }
+            });
         }
 
         // Open task modal
@@ -1499,35 +1517,34 @@
             const completed = parseInt(localStorage.getItem('completedTasks') || '0');
             const isUpgraded = localStorage.getItem('userUpgraded') === 'true';
             
-            // Only show upgrade modal if user has completed 3 tasks and is not upgraded
+            // Block task access if upgrade is required
             if (completed >= 3 && !isUpgraded) {
-                // Show upgrade modal instead of task modal
-                upgradeModal.style.display = 'block';
+                showUpgradeModal();
                 return;
             }
             
             // Otherwise, show the task modal as normal
             currentTask = tasks.find(task => task.id === taskId);
-            
+
             if (!currentTask) return;
-            
+
             // Update modal content
             document.getElementById('modalTaskTitle').textContent = currentTask.title;
             document.getElementById('modalTaskReward').textContent = `Reward: KSH ${currentTask.reward}`;
             document.getElementById('modalTaskDuration').textContent = `Duration: ${currentTask.duration} mins`;
             document.getElementById('modalTaskSuccess').textContent = `Success Rate: ${currentTask.successRate}%`;
             document.getElementById('modalTaskDescription').textContent = currentTask.description;
-            
+
             // Build task questions
             const taskQuestions = document.getElementById('taskQuestions');
             taskQuestions.innerHTML = '';
-            
+
             currentTask.questions.forEach((question, index) => {
                 const questionDiv = document.createElement('div');
                 questionDiv.className = 'question';
-                
+
                 let questionHTML = `<h3 class="question-title">${index + 1}. ${question.question}</h3>`;
-                
+
                 if (question.type === 'multiple' || question.type === 'classification') {
                     questionHTML += `<div class="question-options">`;
                     question.options.forEach(option => {
@@ -1553,11 +1570,11 @@
                 } else if (question.type === 'text') {
                     questionHTML += `<textarea class="text-answer" id="q${index}" placeholder="Type your answer here..."></textarea>`;
                 }
-                
+
                 questionDiv.innerHTML = questionHTML;
                 taskQuestions.appendChild(questionDiv);
             });
-            
+
             // Show modal
             taskModal.style.display = 'block';
         }
@@ -1567,7 +1584,7 @@
             // Simple validation - check if at least one question is answered
             const inputs = document.querySelectorAll('#taskQuestions input, #taskQuestions textarea');
             let answered = false;
-            
+
             inputs.forEach(input => {
                 if (input.type === 'radio' && input.checked) {
                     answered = true;
@@ -1575,62 +1592,52 @@
                     answered = true;
                 }
             });
-            
+
             if (!answered) {
                 alert('Please answer at least one question before submitting.');
                 return;
             }
-            
+
             // Calculate task completion (simulated)
             const success = Math.random() > 0.1; // 90% success rate
-            
+
             if (success) {
                 // Update user stats
                 const completed = parseInt(localStorage.getItem('completedTasks') || '0') + 1;
                 const totalEarnings = parseInt(localStorage.getItem('totalEarnings') || '0') + currentTask.reward;
                 const balance = parseInt(localStorage.getItem('userBalance') || '0') + currentTask.reward;
-                
+
                 localStorage.setItem('completedTasks', completed.toString());
                 localStorage.setItem('totalEarnings', totalEarnings.toString());
                 localStorage.setItem('userBalance', balance.toString());
-                
+
                 // Calculate success rate
                 const rate = Math.min(100, Math.round((completed / (completed + 1)) * 100));
                 localStorage.setItem('successRate', rate.toString());
-                
+
                 // Update UI
                 userBalance.textContent = balance.toLocaleString();
                 completedTasks.textContent = completed;
                 successRate.textContent = `${rate}%`;
-                
+
                 // Update task limit indicator
                 updateTaskLimitIndicator(completed);
-                
+
                 alert(`Task completed successfully! You've earned KSH ${currentTask.reward}.`);
-                
+
                 // Check if user has reached the 3 task limit
                 if (completed >= 3) {
-                    // Show a message about the upgrade
+                    // Force show upgrade modal immediately after 3rd task
                     setTimeout(() => {
-                        alert('You have completed 3 tasks. To continue earning, please upgrade to a premium package.');
-                    }, 500);
+                        showUpgradeModal();
+                    }, 1000);
                 }
             } else {
                 alert('Task submission failed. Please try again with more careful responses.');
             }
-            
+
             taskModal.style.display = 'none';
         }
-// In your dashboard.html, replace the proceedPaymentBtn event listener with:
-document.getElementById('proceedPaymentBtn').addEventListener('click', function() {
-    if (selectedPackage) {
-        // Save selected package and redirect to packages page
-        localStorage.setItem('selectedPackage', selectedPackage);
-        window.location.href = `packages.html?package=${selectedPackage}`;
-    } else {
-        alert('Please select a package first.');
-    }
-});
     </script>
 </body>
 </html>

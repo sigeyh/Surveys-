@@ -644,14 +644,14 @@
                 }
                 
                 // Validate minimum amount
-                if (amount < 50) {
+                if (amount < 5,000) {
                     alert('Minimum withdrawal amount is KSH 50');
                     return;
                 }
                 
                 // Validate maximum amount
                 if (amount > 5000) {
-                    alert('Maximum withdrawal per transaction is KSH 5,000');
+                    alert('Maximum withdrawal per transaction is KSH 75,000');
                     return;
                 }
                 
@@ -678,9 +678,9 @@
             amountInput.addEventListener('input', function() {
                 const amount = parseInt(this.value) || 0;
                 
-                if (amount > 0 && amount < 50) {
+                if (amount > 0 && amount < 5000) {
                     this.style.borderColor = '#e74c3c';
-                } else if (amount > 5000) {
+                } else if (amount > 75000) {
                     this.style.borderColor = '#e74c3c';
                 } else if (amount > availableBalance) {
                     this.style.borderColor = '#e74c3c';

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Choose Payment Method - SurveyPro</title>
+    <title>Complete Payment - SurveyPro</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -164,6 +164,80 @@
             font-size: 14px;
         }
         
+        /* M-Pesa Instructions */
+        .mpesa-instructions {
+            background: #e8f5e8;
+            border: 1px solid #28a745;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .mpesa-steps {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .mpesa-steps li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(40, 167, 69, 0.2);
+            display: flex;
+            align-items: center;
+        }
+        
+        .mpesa-steps li:last-child {
+            border-bottom: none;
+        }
+        
+        .step-number {
+            background: var(--success);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .till-number {
+            background: white;
+            border: 2px dashed var(--success);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .till-number-code {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        .copy-btn {
+            background: var(--success);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background: #218838;
+        }
+        
+        .copy-btn.copied {
+            background: var(--primary);
+        }
+        
         /* Payment Forms */
         .payment-form {
             display: none;
@@ -195,20 +269,17 @@
             font-size: 16px;
         }
         
-        .phone-input {
-            display: flex;
+        .verification-message {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 14px;
         }
         
-        .phone-prefix {
-            background: var(--light-gray);
-            padding: 12px 15px;
-            border: 1px solid var(--light-gray);
-            border-right: none;
-            border-radius: 5px 0 0 5px;
-        }
-        
-        .phone-input input {
-            border-radius: 0 5px 5px 0;
+        .verification-message strong {
+            color: #856404;
         }
         
         /* Buttons */
@@ -334,6 +405,12 @@
             .action-buttons {
                 flex-direction: column;
             }
+            
+            .till-number {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -376,12 +453,12 @@
             <h2>Choose Payment Method</h2>
             
             <div class="payment-options">
-                <div class="payment-option" data-method="mpesa">
+                <div class="payment-option selected" data-method="mpesa">
                     <div class="payment-icon">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
                     <div class="payment-name">M-Pesa</div>
-                    <div class="payment-description">Pay with M-Pesa via STK Push</div>
+                    <div class="payment-description">Pay via M-Pesa Till Number</div>
                 </div>
                 
                 <div class="payment-option" data-method="card">
@@ -399,31 +476,66 @@
                     <div class="payment-name">Bank Transfer</div>
                     <div class="payment-description">Direct bank transfer</div>
                 </div>
-                
-                <div class="payment-option" data-method="airtel">
-                    <div class="payment-icon">
-                        <i class="fas fa-wifi"></i>
-                    </div>
-                    <div class="payment-name">Airtel Money</div>
-                    <div class="payment-description">Pay with Airtel Money</div>
-                </div>
             </div>
             
             <!-- M-Pesa Payment Form -->
-            <div class="payment-form" id="mpesaForm">
-                <h3>M-Pesa Payment</h3>
-                <p>You will receive an STK Push prompt on your phone to complete the payment.</p>
+            <div class="payment-form active" id="mpesaForm">
+                <h3>M-Pesa Payment Instructions</h3>
                 
-                <div class="form-group">
-                    <label for="mpesaPhone">M-Pesa Phone Number</label>
-                    <div class="phone-input">
-                        <span class="phone-prefix">+254</span>
-                        <input type="tel" id="mpesaPhone" placeholder="7XX XXX XXX" pattern="[0-9]{9}" required>
-                    </div>
+                <div class="mpesa-instructions">
+                    <h4>Follow these steps to complete your payment:</h4>
+                    <ol class="mpesa-steps">
+                        <li>
+                            <div class="step-number">1</div>
+                            <div>Go to M-Pesa on your phone</div>
+                        </li>
+                        <li>
+                            <div class="step-number">2</div>
+                            <div>Select <strong>Lipa Na M-Pesa</strong></div>
+                        </li>
+                        <li>
+                            <div class="step-number">3</div>
+                            <div>Select <strong>Buy Goods and Services</strong></div>
+                        </li>
+                        <li>
+                            <div class="step-number">4</div>
+                            <div>Enter the Till Number: 
+                                <div class="till-number">
+                                    <div class="till-number-code">9824375</div>
+                                    <button class="copy-btn" id="copyTillNumber">
+                                        <i class="fas fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step-number">5</div>
+                            <div>Enter the amount: <strong id="mpesaAmount">KSH 450</strong></div>
+                        </li>
+                        <li>
+                            <div class="step-number">6</div>
+                            <div>Enter your M-Pesa PIN and send</div>
+                        </li>
+                        <li>
+                            <div class="step-number">7</div>
+                            <div>Wait for confirmation message from <strong>Hakika R Provision</strong></div>
+                        </li>
+                    </ol>
                 </div>
                 
-                <button class="btn btn-success btn-large" id="payWithMpesa" style="width: 100%;">
-                    <i class="fas fa-mobile-alt"></i> Pay with M-Pesa
+                <div class="verification-message">
+                    <strong>Important:</strong> You will receive a message from <strong>Hakika R Provision</strong> with a transaction code. 
+                    Enter that code below to verify your payment.
+                </div>
+                
+                <div class="form-group">
+                    <label for="transactionCode">Transaction Code from M-Pesa Message</label>
+                    <input type="text" id="transactionCode" placeholder="Enter code from Hakika R Provision message" required>
+                    <small style="color: var(--gray);">Example: RB23A1B2C3 or similar code from the message</small>
+                </div>
+                
+                <button class="btn btn-success btn-large" id="verifyMpesaPayment" style="width: 100%;">
+                    <i class="fas fa-check-circle"></i> Verify Payment
                 </button>
                 
                 <div class="security-badge">
@@ -484,28 +596,6 @@
                 <button class="btn btn-secondary" id="confirmBankTransfer" style="width: 100%;">
                     I've Made the Transfer
                 </button>
-            </div>
-            
-            <!-- Airtel Money Form -->
-            <div class="payment-form" id="airtelForm">
-                <h3>Airtel Money Payment</h3>
-                <p>You will receive a USSD prompt to complete the payment.</p>
-                
-                <div class="form-group">
-                    <label for="airtelPhone">Airtel Money Phone Number</label>
-                    <div class="phone-input">
-                        <span class="phone-prefix">+254</span>
-                        <input type="tel" id="airtelPhone" placeholder="7XX XXX XXX" pattern="[0-9]{9}" required>
-                    </div>
-                </div>
-                
-                <button class="btn btn-success btn-large" id="payWithAirtel" style="width: 100%;">
-                    <i class="fas fa-wifi"></i> Pay with Airtel Money
-                </button>
-                
-                <div class="security-badge">
-                    <i class="fas fa-lock"></i> Your payment is secure and encrypted
-                </div>
             </div>
         </section>
         
@@ -570,6 +660,9 @@
             
             // Setup payment buttons
             setupPaymentButtons(packagePrice);
+            
+            // Setup copy till number button
+            setupCopyTillNumber();
         });
 
         // Update package details based on selected price
@@ -624,6 +717,7 @@
             // Update UI with package details
             document.getElementById('selectedPackageName').textContent = package.name;
             document.getElementById('selectedPackagePrice').textContent = package.price;
+            document.getElementById('mpesaAmount').textContent = package.price;
             document.getElementById('bankAmount').textContent = package.price;
             
             // Update features list
@@ -659,23 +753,50 @@
                     document.getElementById(`${method}Form`).classList.add('active');
                 });
             });
+        }
+
+        // Setup copy till number button
+        function setupCopyTillNumber() {
+            const copyBtn = document.getElementById('copyTillNumber');
+            const tillNumber = '9824375';
             
-            // Select M-Pesa by default
-            document.querySelector('.payment-option[data-method="mpesa"]').click();
+            copyBtn.addEventListener('click', function() {
+                navigator.clipboard.writeText(tillNumber).then(() => {
+                    // Show copied state
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                    copyBtn.classList.add('copied');
+                    
+                    // Reset after 2 seconds
+                    setTimeout(() => {
+                        copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                        copyBtn.classList.remove('copied');
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                    alert('Failed to copy till number. Please copy manually: ' + tillNumber);
+                });
+            });
         }
 
         // Setup payment button actions
         function setupPaymentButtons(packagePrice) {
-            // M-Pesa payment
-            document.getElementById('payWithMpesa').addEventListener('click', function() {
-                const phone = document.getElementById('mpesaPhone').value;
-                if (!phone || phone.length !== 9) {
-                    alert('Please enter a valid M-Pesa phone number');
+            // M-Pesa payment verification
+            document.getElementById('verifyMpesaPayment').addEventListener('click', function() {
+                const transactionCode = document.getElementById('transactionCode').value.trim();
+                
+                if (!transactionCode) {
+                    alert('Please enter the transaction code from your M-Pesa message');
                     return;
                 }
                 
-                // Simulate payment processing
-                processPayment('M-Pesa', packagePrice, phone);
+                // Validate transaction code format
+                if (!isValidTransactionCode(transactionCode)) {
+                    alert('Please enter a valid transaction code. It should be a code like RB23A1B2C3 from the Hakika R Provision message.');
+                    return;
+                }
+                
+                // Verify payment internally
+                verifyMpesaPayment(transactionCode, packagePrice);
             });
             
             // Card payment
@@ -699,22 +820,53 @@
                 alert('Thank you! We will verify your bank transfer and activate your premium account within 24 hours.');
                 // In a real app, you would track this pending payment
             });
-            
-            // Airtel Money payment
-            document.getElementById('payWithAirtel').addEventListener('click', function() {
-                const phone = document.getElementById('airtelPhone').value;
-                if (!phone || phone.length !== 9) {
-                    alert('Please enter a valid Airtel Money phone number');
-                    return;
-                }
-                
-                // Simulate payment processing
-                processPayment('Airtel Money', packagePrice, phone);
-            });
         }
 
-        // Simulate payment processing
-        function processPayment(method, amount, phone = null) {
+        // Validate M-Pesa transaction code format
+        function isValidTransactionCode(code) {
+            // M-Pesa transaction codes are typically alphanumeric and 8-12 characters
+            // This is a basic validation - in production you would have more robust checks
+            const transactionRegex = /^[A-Z0-9]{8,12}$/;
+            return transactionRegex.test(code);
+        }
+
+        // Verify M-Pesa payment internally
+        function verifyMpesaPayment(transactionCode, packagePrice) {
+            // Show loading state
+            const verifyBtn = document.getElementById('verifyMpesaPayment');
+            verifyBtn.disabled = true;
+            verifyBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+            
+            // Simulate API call to verify payment
+            setTimeout(() => {
+                // In a real app, this would be an API call to verify the transaction
+                // For demo, we'll simulate a successful verification 80% of the time
+                const isSuccessful = Math.random() > 0.2;
+                
+                if (isSuccessful) {
+                    // Mark user as upgraded
+                    localStorage.setItem('userUpgraded', 'true');
+                    localStorage.setItem('premiumExpiry', getExpiryDate(packagePrice));
+                    localStorage.setItem('transactionCode', transactionCode);
+                    
+                    // Show success message
+                    alert(`Payment verified successfully! Your premium account has been activated.`);
+                    
+                    // Redirect to dashboard
+                    window.location.href = 'dashboard.html';
+                } else {
+                    // Show error message
+                    alert(`Unable to verify payment with code: ${transactionCode}. Please check the code and try again. If the problem persists, contact support.`);
+                    
+                    // Reset button
+                    verifyBtn.disabled = false;
+                    verifyBtn.innerHTML = '<i class="fas fa-check-circle"></i> Verify Payment';
+                }
+            }, 3000);
+        }
+
+        // Simulate payment processing for other methods
+        function processPayment(method, amount) {
             // Show loading state
             const buttons = document.querySelectorAll('.btn-success, .btn-large');
             buttons.forEach(btn => {

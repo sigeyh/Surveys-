@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en-KE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Payment Method - SurveyPro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4a6bff;
+            --secondary: #ff7e5f;
+            --dark: #333;
+            --light: #f8f9fa;
+            --success: #28a745;
+            --warning: #ffc107;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fb;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), #6a11cb);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 32px;
+        }
+        
+        /* Package Summary */
+        .package-summary {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .package-icon {
+            font-size: 50px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .package-name {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .package-price {
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .package-features {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .package-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .package-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .package-features li i {
+            color: var(--success);
+            margin-right: 10px;
+        }
+        
+        /* Payment Methods */
+        .payment-methods {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .payment-methods h2 {
+            margin-bottom: 25px;
+            text-align: center;
+            color: var(--dark);
+        }
+        
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .payment-option {
+            border: 2px solid var(--light-gray);
+            border-radius: 10px;
+            padding: 25px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .payment-option:hover, .payment-option.selected {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .payment-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .payment-name {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .payment-description {
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        /* Payment Forms */
+        .payment-form {
+            display: none;
+            background: var(--light);
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .payment-form.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .phone-input {
+            display: flex;
+        }
+        
+        .phone-prefix {
+            background: var(--light-gray);
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-right: none;
+            border-radius: 5px 0 0 5px;
+        }
+        
+        .phone-input input {
+            border-radius: 0 5px 5px 0;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: #3a5bef;
+            transform: translateY(-2px);
+        }
+        
+        .btn-large {
+            padding: 15px 30px;
+            font-size: 18px;
+        }
+        
+        .btn-success {
+            background: var(--success);
+        }
+        
+        .btn-success:hover {
+            background: #218838;
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background: #ff6a4a;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* Security Badge */
+        .security-badge {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--light);
+            border-radius: 5px;
+        }
+        
+        .security-badge i {
+            color: var(--success);
+            margin-right: 8px;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .payment-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-poll"></i>
+                    SurveyPro
+                </div>
+                <div class="user-info">
+                    <a href="dashboard.html" class="btn btn-secondary">Back to Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Package Summary -->
+        <section class="package-summary">
+            <div class="package-icon">
+                <i class="fas fa-crown"></i>
+            </div>
+            <h1 class="package-name" id="selectedPackageName">Premium Package</h1>
+            <div class="package-price" id="selectedPackagePrice">KSH 450</div>
+            <p>Upgrade your account for unlimited task access</p>
+            
+            <ul class="package-features" id="packageFeatures">
+                <li><i class="fas fa-check"></i> Unlimited tasks for 30 days</li>
+                <li><i class="fas fa-check"></i> Priority support</li>
+                <li><i class="fas fa-check"></i> Higher earning tasks</li>
+                <li><i class="fas fa-check"></i> Early access to new features</li>
+            </ul>
+        </section>
+
+        <!-- Payment Methods -->
+        <section class="payment-methods">
+            <h2>Choose Payment Method</h2>
+            
+            <div class="payment-options">
+                <div class="payment-option" data-method="mpesa">
+                    <div class="payment-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="payment-name">M-Pesa</div>
+                    <div class="payment-description">Pay with M-Pesa via STK Push</div>
+                </div>
+                
+                <div class="payment-option" data-method="card">
+                    <div class="payment-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="payment-name">Credit/Debit Card</div>
+                    <div class="payment-description">Visa, Mastercard, or American Express</div>
+                </div>
+                
+                <div class="payment-option" data-method="bank">
+                    <div class="payment-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="payment-name">Bank Transfer</div>
+                    <div class="payment-description">Direct bank transfer</div>
+                </div>
+                
+                <div class="payment-option" data-method="airtel">
+                    <div class="payment-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <div class="payment-name">Airtel Money</div>
+                    <div class="payment-description">Pay with Airtel Money</div>
+                </div>
+            </div>
+            
+            <!-- M-Pesa Payment Form -->
+            <div class="payment-form" id="mpesaForm">
+                <h3>M-Pesa Payment</h3>
+                <p>You will receive an STK Push prompt on your phone to complete the payment.</p>
+                
+                <div class="form-group">
+                    <label for="mpesaPhone">M-Pesa Phone Number</label>
+                    <div class="phone-input">
+                        <span class="phone-prefix">+254</span>
+                        <input type="tel" id="mpesaPhone" placeholder="7XX XXX XXX" pattern="[0-9]{9}" required>
+                    </div>
+                </div>
+                
+                <button class="btn btn-success btn-large" id="payWithMpesa" style="width: 100%;">
+                    <i class="fas fa-mobile-alt"></i> Pay with M-Pesa
+                </button>
+                
+                <div class="security-badge">
+                    <i class="fas fa-lock"></i> Your payment is secure and encrypted
+                </div>
+            </div>
+            
+            <!-- Card Payment Form -->
+            <div class="payment-form" id="cardForm">
+                <h3>Card Payment</h3>
+                
+                <div class="form-group">
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" required>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label for="expiryDate">Expiry Date</label>
+                        <input type="text" id="expiryDate" placeholder="MM/YY" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cvv">CVV</label>
+                        <input type="text" id="cvv" placeholder="123" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cardName">Name on Card</label>
+                    <input type="text" id="cardName" placeholder="John Doe" required>
+                </div>
+                
+                <button class="btn btn-success btn-large" id="payWithCard" style="width: 100%;">
+                    <i class="fas fa-credit-card"></i> Pay Now
+                </button>
+                
+                <div class="security-badge">
+                    <i class="fas fa-lock"></i> Your payment is secure and encrypted
+                </div>
+            </div>
+            
+            <!-- Bank Transfer Form -->
+            <div class="payment-form" id="bankForm">
+                <h3>Bank Transfer</h3>
+                <p>Transfer the amount to the following bank account:</p>
+                
+                <div class="bank-details" style="background: var(--light); padding: 20px; border-radius: 5px; margin: 20px 0;">
+                    <p><strong>Bank:</strong> Equity Bank</p>
+                    <p><strong>Account Name:</strong> SurveyPro Kenya Ltd</p>
+                    <p><strong>Account Number:</strong> 1234567890</p>
+                    <p><strong>Branch:</strong> Westlands</p>
+                    <p><strong>Amount:</strong> <span id="bankAmount">KSH 450</span></p>
+                </div>
+                
+                <p>After making the transfer, please send the transaction details to <strong>payments@surveypro.co.ke</strong> for verification.</p>
+                
+                <button class="btn btn-secondary" id="confirmBankTransfer" style="width: 100%;">
+                    I've Made the Transfer
+                </button>
+            </div>
+            
+            <!-- Airtel Money Form -->
+            <div class="payment-form" id="airtelForm">
+                <h3>Airtel Money Payment</h3>
+                <p>You will receive a USSD prompt to complete the payment.</p>
+                
+                <div class="form-group">
+                    <label for="airtelPhone">Airtel Money Phone Number</label>
+                    <div class="phone-input">
+                        <span class="phone-prefix">+254</span>
+                        <input type="tel" id="airtelPhone" placeholder="7XX XXX XXX" pattern="[0-9]{9}" required>
+                    </div>
+                </div>
+                
+                <button class="btn btn-success btn-large" id="payWithAirtel" style="width: 100%;">
+                    <i class="fas fa-wifi"></i> Pay with Airtel Money
+                </button>
+                
+                <div class="security-badge">
+                    <i class="fas fa-lock"></i> Your payment is secure and encrypted
+                </div>
+            </div>
+        </section>
+        
+        <div class="action-buttons">
+            <a href="dashboard.html" class="btn btn-secondary">Cancel</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SurveyPro</h3>
+                    <p>Your trusted partner for earning money online through surveys, tasks, and questionnaires.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="dashboard.html">Tasks</a></li>
+                        <li><a href="earnings.html">Earnings</a></li>
+                        <li><a href="help.html">How It Works</a></li>
+                        <li><a href="help.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> support@surveypro.co.ke</li>
+                        <li><i class="fas fa-phone"></i> +254 700 123 456</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 SurveyPro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Get the selected package from URL parameters or localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const packagePrice = urlParams.get('package') || localStorage.getItem('selectedPackage') || '450';
+            
+            // Update package details based on selected package
+            updatePackageDetails(packagePrice);
+            
+            // Setup payment method selection
+            setupPaymentMethods();
+            
+            // Setup payment buttons
+            setupPaymentButtons(packagePrice);
+        });
+
+        // Update package details based on selected price
+        function updatePackageDetails(price) {
+            const packageDetails = {
+                '200': {
+                    name: 'Weekly Package',
+                    price: 'KSH 200',
+                    features: [
+                        'Unlimited tasks for 7 days',
+                        'Priority support',
+                        'Higher earning tasks'
+                    ]
+                },
+                '450': {
+                    name: 'Monthly Package',
+                    price: 'KSH 450',
+                    features: [
+                        'Unlimited tasks for 30 days',
+                        'Priority support',
+                        'Higher earning tasks',
+                        'Early access to new features'
+                    ]
+                },
+                '800': {
+                    name: 'Quarterly Package',
+                    price: 'KSH 800',
+                    features: [
+                        'Unlimited tasks for 90 days',
+                        'Priority support',
+                        'Higher earning tasks',
+                        'Early access to new features',
+                        '10% bonus on earnings'
+                    ]
+                },
+                '1500': {
+                    name: 'Annual Package',
+                    price: 'KSH 1500',
+                    features: [
+                        'Unlimited tasks for 365 days',
+                        'Priority support',
+                        'Highest earning tasks',
+                        'Early access to new features',
+                        '15% bonus on earnings',
+                        'VIP customer status'
+                    ]
+                }
+            };
+            
+            const package = packageDetails[price] || packageDetails['450'];
+            
+            // Update UI with package details
+            document.getElementById('selectedPackageName').textContent = package.name;
+            document.getElementById('selectedPackagePrice').textContent = package.price;
+            document.getElementById('bankAmount').textContent = package.price;
+            
+            // Update features list
+            const featuresList = document.getElementById('packageFeatures');
+            featuresList.innerHTML = '';
+            
+            package.features.forEach(feature => {
+                const li = document.createElement('li');
+                li.innerHTML = `<i class="fas fa-check"></i> ${feature}`;
+                featuresList.appendChild(li);
+            });
+        }
+
+        // Setup payment method selection
+        function setupPaymentMethods() {
+            const paymentOptions = document.querySelectorAll('.payment-option');
+            const paymentForms = document.querySelectorAll('.payment-form');
+            
+            paymentOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const method = this.getAttribute('data-method');
+                    
+                    // Remove selected class from all options
+                    paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    
+                    // Hide all payment forms
+                    paymentForms.forEach(form => form.classList.remove('active'));
+                    
+                    // Show selected payment form
+                    document.getElementById(`${method}Form`).classList.add('active');
+                });
+            });
+            
+            // Select M-Pesa by default
+            document.querySelector('.payment-option[data-method="mpesa"]').click();
+        }
+
+        // Setup payment button actions
+        function setupPaymentButtons(packagePrice) {
+            // M-Pesa payment
+            document.getElementById('payWithMpesa').addEventListener('click', function() {
+                const phone = document.getElementById('mpesaPhone').value;
+                if (!phone || phone.length !== 9) {
+                    alert('Please enter a valid M-Pesa phone number');
+                    return;
+                }
+                
+                // Simulate payment processing
+                processPayment('M-Pesa', packagePrice, phone);
+            });
+            
+            // Card payment
+            document.getElementById('payWithCard').addEventListener('click', function() {
+                const cardNumber = document.getElementById('cardNumber').value;
+                const expiry = document.getElementById('expiryDate').value;
+                const cvv = document.getElementById('cvv').value;
+                const name = document.getElementById('cardName').value;
+                
+                if (!cardNumber || !expiry || !cvv || !name) {
+                    alert('Please fill in all card details');
+                    return;
+                }
+                
+                // Simulate payment processing
+                processPayment('Credit Card', packagePrice);
+            });
+            
+            // Bank transfer confirmation
+            document.getElementById('confirmBankTransfer').addEventListener('click', function() {
+                alert('Thank you! We will verify your bank transfer and activate your premium account within 24 hours.');
+                // In a real app, you would track this pending payment
+            });
+            
+            // Airtel Money payment
+            document.getElementById('payWithAirtel').addEventListener('click', function() {
+                const phone = document.getElementById('airtelPhone').value;
+                if (!phone || phone.length !== 9) {
+                    alert('Please enter a valid Airtel Money phone number');
+                    return;
+                }
+                
+                // Simulate payment processing
+                processPayment('Airtel Money', packagePrice, phone);
+            });
+        }
+
+        // Simulate payment processing
+        function processPayment(method, amount, phone = null) {
+            // Show loading state
+            const buttons = document.querySelectorAll('.btn-success, .btn-large');
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            });
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Mark user as upgraded
+                localStorage.setItem('userUpgraded', 'true');
+                localStorage.setItem('premiumExpiry', getExpiryDate(amount));
+                
+                // Show success message
+                alert(`Payment successful! Your premium account has been activated.`);
+                
+                // Redirect to dashboard
+                window.location.href = 'dashboard.html';
+            }, 2000);
+        }
+
+        // Calculate expiry date based on package
+        function getExpiryDate(packagePrice) {
+            const now = new Date();
+            let expiry = new Date();
+            
+            switch(packagePrice) {
+                case '200':
+                    expiry.setDate(now.getDate() + 7);
+                    break;
+                case '450':
+                    expiry.setMonth(now.getMonth() + 1);
+                    break;
+                case '800':
+                    expiry.setMonth(now.getMonth() + 3);
+                    break;
+                case '1500':
+                    expiry.setFullYear(now.getFullYear() + 1);
+                    break;
+                default:
+                    expiry.setMonth(now.getMonth() + 1);
+            }
+            
+            return expiry.toISOString();
+        }
+    </script>
+</body>
+</html>

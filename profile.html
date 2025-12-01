@@ -4,219 +4,173 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Profile - SurveyPro</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* ---------- BETA MODERN CSS ---------- */
         body {
-            font-family: "Poppins", sans-serif;
             margin: 0;
-            padding: 0;
-            background: #f5f7fb;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f6ff;
             color: #333;
         }
 
-        header, footer {
-            background: #0d6efd;
-            padding: 15px 20px;
-            color: white;
+        .dashboard-header {
+            background: linear-gradient(135deg, #4a6bff, #6a11cb);
+            padding: 40px 20px;
             text-align: center;
+            color: white;
         }
 
-        .dashboard-header {
-            background: #0d6efd;
-            color: white;
-            padding: 30px 10px;
-            text-align: center;
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
+        .dashboard-header h1 {
+            margin-bottom: 10px;
+            font-size: 2rem;
         }
 
         .container {
             width: 90%;
-            margin: auto;
+            margin: 0 auto;
             max-width: 900px;
-        }
-
-        .profile-content {
-            margin-top: 30px;
+            padding: 20px 0;
         }
 
         .profile-section {
             background: white;
             padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            border-left: 5px solid #4a6bff;
         }
 
         .profile-section h3 {
-            margin-bottom: 15px;
-            color: #0d6efd;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            color: #4a6bff;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         label {
             font-weight: 600;
-            display: block;
             margin-bottom: 5px;
+            display: block;
         }
 
         input {
             width: 100%;
-            padding: 10px;
-            border: 2px solid #ddd;
-            outline: none;
-            border-radius: 10px;
-            transition: 0.3s;
-        }
-
-        input:focus {
-            border-color: #0d6efd;
+            padding: 12px;
+            border: 1px solid #dce1ff;
+            border-radius: 8px;
+            font-size: 1rem;
         }
 
         .btn {
-            background: #0d6efd;
+            background: linear-gradient(135deg, #4a6bff, #6a11cb);
             color: white;
-            padding: 12px 20px;
+            padding: 12px 18px;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
             transition: 0.3s;
+            margin-top: 10px;
         }
 
         .btn:hover {
-            background: #0b5ed7;
+            opacity: 0.9;
         }
 
         .btn-secondary {
-            background: #6c757d;
-        }
-
-        .btn-secondary:hover {
-            background: #5c636a;
+            background: #e6e8ff;
+            color: #4a6bff;
         }
 
         .badge {
-            background: #ffc107;
-            padding: 5px 10px;
-            border-radius: 5px;
-            color: black;
+            background: #4a6bff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            color: white;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 
 <body>
 
-<header>
-    <h2>SurveyPro User Dashboard</h2>
-</header>
+    <section class="dashboard-header">
+        <h1>My Profile</h1>
+        <p>Manage your account information and preferences</p>
+    </section>
 
-<section class="dashboard-header">
     <div class="container">
-        <div class="dashboard-title">
-            <h1>My Profile</h1>
-            <p>Manage your account information and preferences</p>
-        </div>
-    </div>
-</section>
 
-<div class="container">
-    <div class="profile-content">
-
-        <!-- PERSONAL INFORMATION -->
         <div class="profile-section">
             <h3>Personal Information</h3>
-            <form id="profileForm">
+
+            <form class="profile-form">
                 <div class="form-group">
                     <label>Full Name</label>
-                    <input id="fullName" type="text" />
+                    <input type="text" id="profileName">
                 </div>
-                
+
                 <div class="form-group">
                     <label>Email Address</label>
-                    <input id="email" type="email" />
+                    <input type="email" id="profileEmail">
                 </div>
-                
+
                 <div class="form-group">
                     <label>Phone Number</label>
-                    <input id="phone" type="tel" />
+                    <input type="tel" id="profilePhone">
                 </div>
-                
-                <button type="submit" class="btn">Update Profile</button>
+
+                <button class="btn" type="button">Update Profile</button>
             </form>
         </div>
 
-        <!-- MPESA DETAILS -->
         <div class="profile-section">
             <h3>M-Pesa Details</h3>
-            <p>Current M-Pesa number: <strong id="mpesaDisplay">Not Set</strong></p>
-            <button class="btn btn-secondary" onclick="updateMpesa()">Update M-Pesa Number</button>
+            <p>Current M-Pesa number: <strong id="mpesaNumber">Loading...</strong></p>
+            <button class="btn btn-secondary">Update M-Pesa Number</button>
         </div>
 
-        <!-- SECURITY -->
         <div class="profile-section">
             <h3>Account Security</h3>
             <button class="btn btn-secondary">Change Password</button>
         </div>
 
-        <!-- ACCOUNT STATUS -->
         <div class="profile-section">
             <h3>Account Status</h3>
-            <p>Account Type: <span class="badge" id="accType">Free</span></p>
-            <p>Tasks Completed: <strong id="taskCount">0/3</strong></p>
+            <p>Account Type: <span class="badge">Free Account</span></p>
+            <p>Tasks Completed: <strong id="completedTasks">0</strong></p>
             <button class="btn">Upgrade to Premium</button>
         </div>
 
     </div>
-</div>
 
-<footer>
-    <p>SurveyPro © 2025</p>
-</footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedUser = localStorage.getItem('surveyProUser');
 
-<script>
-    /* ---------------- LOAD FROM LOCALSTORAGE ---------------- */
-    function loadProfile() {
-        document.getElementById("fullName").value = localStorage.getItem("fullName") || "";
-        document.getElementById("email").value = localStorage.getItem("email") || "";
-        document.getElementById("phone").value = localStorage.getItem("phone") || "";
-        document.getElementById("mpesaDisplay").textContent = localStorage.getItem("mpesa") || "Not Set";
-        document.getElementById("accType").textContent = localStorage.getItem("accType") || "Free";
-        document.getElementById("taskCount").textContent = localStorage.getItem("taskCount") || "0/3";
-    }
+            if (savedUser) {
+                const user = JSON.parse(savedUser);
 
-    loadProfile();
+                document.getElementById("profileName").value = user.fullName || "";
+                document.getElementById("profileEmail").value = user.email || "";
+                document.getElementById("profilePhone").value = user.phone || "";
 
-    /* ---------------- SAVE PROFILE ---------------- */
-    document.getElementById("profileForm").addEventListener("submit", function(e) {
-        e.preventDefault();
+                document.getElementById("mpesaNumber").textContent = user.phone;
 
-        localStorage.setItem("fullName", document.getElementById("fullName").value);
-        localStorage.setItem("email", document.getElementById("email").value);
-        localStorage.setItem("phone", document.getElementById("phone").value);
-
-        alert("Profile updated successfully!");
-        loadProfile();
-    });
-
-    /* ---------------- UPDATE MPESA ---------------- */
-    function updateMpesa() {
-        let newMpesa = prompt("Enter new M-Pesa number:");
-
-        if (newMpesa && newMpesa.length >= 10) {
-            localStorage.setItem("mpesa", newMpesa);
-            document.getElementById("mpesaDisplay").textContent = newMpesa;
-            alert("M-Pesa number updated!");
-        } else {
-            alert("Invalid number, try again.");
-        }
-    }
-</script>
+                const completed = localStorage.getItem("completedTasks") || "0";
+                document.getElementById("completedTasks").textContent = completed;
+            } else {
+                alert("No profile data found. Please create an account first.");
+                window.location.href = "signup.html";
+            }
+        });
+    </script>
 
 </body>
 </html>

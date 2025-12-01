@@ -600,5 +600,33 @@
             });
         });
     </script>
+<script>
+document.getElementById("signupForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const fullName = document.getElementById("fullName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (!fullName || !email || !phone || !password) {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    const userData = {
+        fullName: fullName,
+        email: email,
+        phone: phone,
+        password: password
+    };
+
+    // save account
+    localStorage.setItem("surveyProUser", JSON.stringify(userData));
+
+    alert("Account created successfully! You can now login.");
+    window.location.href = "login.html";
+});
+</script>
 </body>
 </html>

@@ -839,12 +839,16 @@
     <!-- Tasks Filter -->
     <section class="tasks-filter">
         <div class="container">
-            <div class="filter-options">
+                <div class="filter-options">
                 <button class="filter-btn active" data-filter="all">All Tasks</button>
                 <button class="filter-btn" data-filter="survey">Surveys</button>
                 <button class="filter-btn" data-filter="questionnaire">Questionnaires</button>
                 <button class="filter-btn" data-filter="annotation">Data Annotation</button>
                 <button class="filter-btn" data-filter="video">Video Tasks</button>
+                <button class="filter-btn" data-filter="audio">Audio Tasks</button>
+                <button class="filter-btn" data-filter="writing">Writing Tasks</button>
+                <button class="filter-btn" data-filter="testing">Testing Tasks</button>
+                <button class="filter-btn" data-filter="research">Research Tasks</button>
                 <div class="search-box">
                     <input type="text" id="taskSearch" placeholder="Search tasks...">
                 </div>
@@ -1004,150 +1008,611 @@
     </footer>
 
     <script>
-        // Sample tasks data
-        const tasks = [
+       // Sample tasks data - UPDATED WITH MORE KENYAN TASKS
+const tasks = [
+    {
+        id: 'SURV-001',
+        title: 'Consumer Preferences Survey',
+        description: 'Share your opinions on various consumer products and services. This survey will take approximately 4 minutes to complete.',
+        category: 'survey',
+        reward: 120,
+        duration: 4,
+        successRate: 98,
+        availability: 'Available now',
+        questions: [
             {
-                id: 'SURV-001',
-                title: 'Consumer Preferences Survey',
-                description: 'Share your opinions on various consumer products and services. This survey will take approximately 4 minutes to complete.',
-                category: 'survey',
-                reward: 120,
-                duration: 4,
-                successRate: 98,
-                availability: 'Available now',
-                questions: [
-                    {
-                        type: 'multiple',
-                        question: 'Which of these smartphone brands do you prefer?',
-                        options: ['Samsung', 'Apple', 'Tecno', 'Infinix', 'Huawei', 'Other']
-                    },
-                    {
-                        type: 'rating',
-                        question: 'How satisfied are you with your current mobile service provider?',
-                        scale: 5
-                    },
-                    {
-                        type: 'text',
-                        question: 'What features are most important to you when choosing a smartphone?'
-                    }
-                ]
+                type: 'multiple',
+                question: 'Which of these smartphone brands do you prefer?',
+                options: ['Samsung', 'Apple', 'Tecno', 'Infinix', 'Huawei', 'Nokia', 'Other']
             },
             {
-                id: 'SURV-002',
-                title: 'Shopping Habits Questionnaire',
-                description: 'Tell us about your online and offline shopping preferences. Help us understand consumer behavior in Kenya.',
-                category: 'survey',
-                reward: 95,
-                duration: 3,
-                successRate: 96,
-                availability: 'Available now',
-                questions: [
-                    {
-                        type: 'multiple',
-                        question: 'How often do you shop online?',
-                        options: ['Daily', 'Weekly', 'Monthly', 'Rarely', 'Never']
-                    },
-                    {
-                        type: 'text',
-                        question: 'What factors influence your decision to shop at a particular store?'
-                    }
-                ]
+                type: 'rating',
+                question: 'How satisfied are you with your current mobile service provider?',
+                scale: 5
             },
             {
-                id: 'QUEST-001',
-                title: 'Financial Services Feedback',
-                description: 'Detailed questionnaire about your experience with financial services in Kenya. This will take approximately 12 minutes.',
-                category: 'questionnaire',
-                reward: 180,
-                duration: 12,
-                successRate: 95,
-                availability: 'Available now',
-                questions: [
-                    {
-                        type: 'multiple',
-                        question: 'Which mobile money service do you use most frequently?',
-                        options: ['M-Pesa', 'Airtel Money', 'Telkom Cash', 'Equity Eazzy Banking', 'Other']
-                    },
-                    {
-                        type: 'text',
-                        question: 'What improvements would you like to see in mobile banking services?'
-                    },
-                    {
-                        type: 'rating',
-                        question: 'How satisfied are you with the security of your mobile money transactions?',
-                        scale: 5
-                    },
-                    {
-                        type: 'text',
-                        question: 'What challenges do you face when using digital financial services?'
-                    }
-                ]
-            },
-            {
-                id: 'QUEST-002',
-                title: 'Healthcare Services Assessment',
-                description: 'Share your experiences and opinions about healthcare services in your area.',
-                category: 'questionnaire',
-                reward: 150,
-                duration: 10,
-                successRate: 94,
-                availability: 'Available now',
-                questions: [
-                    {
-                        type: 'multiple',
-                        question: 'How do you typically access healthcare services?',
-                        options: ['Public Hospital', 'Private Hospital', 'Clinic', 'Telemedicine', 'Traditional Healer', 'Other']
-                    },
-                    {
-                        type: 'text',
-                        question: 'What improvements would you suggest for healthcare services in your community?'
-                    },
-                    {
-                        type: 'rating',
-                        question: 'How satisfied are you with the quality of healthcare you receive?',
-                        scale: 5
-                    }
-                ]
-            },
-            {
-                id: 'ANNO-001',
-                title: 'Product Image Classification',
-                description: 'Categorize product images into predefined categories. No prior experience needed.',
-                category: 'annotation',
-                reward: 200,
-                duration: 8,
-                successRate: 92,
-                availability: 'Available now',
-                questions: [
-                    {
-                        type: 'classification',
-                        question: 'What category does this product belong to?',
-                        options: ['Electronics', 'Clothing', 'Home & Kitchen', 'Beauty & Personal Care', 'Sports & Outdoors', 'Other']
-                    }
-                ]
-            },
-            {
-                id: 'VID-001',
-                title: 'Video Content Review',
-                description: 'Watch short videos and provide feedback on content quality and relevance.',
-                category: 'video',
-                reward: 250,
-                duration: 15,
-                successRate: 90,
-                availability: 'Available now',
-                questions: [
-                    {
-                        type: 'rating',
-                        question: 'How engaging was this video content?',
-                        scale: 5
-                    },
-                    {
-                        type: 'text',
-                        question: 'What did you like or dislike about the video?'
-                    }
-                ]
+                type: 'text',
+                question: 'What features are most important to you when choosing a smartphone?'
             }
-        ];
+        ]
+    },
+    {
+        id: 'SURV-002',
+        title: 'Shopping Habits Questionnaire',
+        description: 'Tell us about your online and offline shopping preferences. Help us understand consumer behavior in Kenya.',
+        category: 'survey',
+        reward: 95,
+        duration: 3,
+        successRate: 96,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'multiple',
+                question: 'How often do you shop online?',
+                options: ['Daily', 'Weekly', 'Monthly', 'Rarely', 'Never']
+            },
+            {
+                type: 'text',
+                question: 'What factors influence your decision to shop at a particular store?'
+            }
+        ]
+    },
+    {
+        id: 'SURV-003',
+        title: 'M-Pesa Usage Patterns Survey',
+        description: 'Share your experience with M-Pesa and other mobile money services in Kenya. This survey takes 5 minutes.',
+        category: 'survey',
+        reward: 150,
+        duration: 5,
+        successRate: 97,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'multiple',
+                question: 'How often do you use M-Pesa?',
+                options: ['Multiple times daily', 'Daily', 'Weekly', 'Monthly', 'Rarely']
+            },
+            {
+                type: 'multiple',
+                question: 'What do you primarily use M-Pesa for?',
+                options: ['Sending money', 'Receiving money', 'Buying goods', 'Paying bills', 'Saving', 'Loans']
+            },
+            {
+                type: 'text',
+                question: 'What improvements would you like to see in mobile money services?'
+            }
+        ]
+    },
+    {
+        id: 'SURV-004',
+        title: 'Matatu Transport Experience Survey',
+        description: 'Share your experiences with public transport (matatus) in Kenya. Help improve transport services.',
+        category: 'survey',
+        reward: 110,
+        duration: 4,
+        successRate: 95,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'multiple',
+                question: 'How often do you use matatus?',
+                options: ['Daily', 'Weekly', 'Monthly', 'Rarely', 'Never']
+            },
+            {
+                type: 'rating',
+                question: 'How would you rate the safety of matatus in your area?',
+                scale: 5
+            },
+            {
+                type: 'text',
+                question: 'What improvements would you suggest for public transport?'
+            }
+        ]
+    },
+    {
+        id: 'SURV-005',
+        title: 'Kenyan Music Preferences Survey',
+        description: 'Tell us about your music preferences and favorite Kenyan artists. 3-minute survey.',
+        category: 'survey',
+        reward: 90,
+        duration: 3,
+        successRate: 96,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'multiple',
+                question: 'Which Kenyan music genre do you prefer?',
+                options: ['Genge', 'Kapuka', 'Boomba', 'Gospel', 'Rhumba', 'Hip Hop', 'Other']
+            },
+            {
+                type: 'text',
+                question: 'Who is your favorite Kenyan artist and why?'
+            }
+        ]
+    },
+    {
+        id: 'SURV-006',
+        title: 'Internet Connectivity Survey',
+        description: 'Share your experiences with internet service providers in Kenya. Help improve connectivity.',
+        category: 'survey',
+        reward: 130,
+        duration: 4,
+        successRate: 94,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'multiple',
+                question: 'Which internet service provider do you use?',
+                options: ['Safaricom', 'Airtel', 'Telkom', 'Faiba', 'Zuku', 'Other']
+            },
+            {
+                type: 'rating',
+                question: 'How satisfied are you with your internet speed?',
+                scale: 5
+            },
+            {
+                type: 'text',
+                question: 'What challenges do you face with internet connectivity?'
+            }
+        ]
+    },
+    {
+        id: 'SURV-007',
+        title: 'Local Food Preferences Survey',
+        description: 'Share your favorite Kenyan foods and eating habits. 3-minute survey.',
+        category: 'survey',
+        reward: 85,
+        duration: 3,
+        successRate: 98,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'multiple',
+                question: 'What is your favorite Kenyan dish?',
+                options: ['Ugali & Sukuma', 'Nyama Choma', 'Chapati & Beans', 'Githeri', 'Mukimo', 'Other']
+            },
+            {
+                type: 'text',
+                question: 'How often do you eat traditional Kenyan foods?'
+            }
+        ]
+    },
+    {
+        id: 'QUEST-001',
+        title: 'Financial Services Feedback',
+        description: 'Detailed questionnaire about your experience with financial services in Kenya. This will take approximately 12 minutes.',
+        category: 'questionnaire',
+        reward: 180,
+        duration: 12,
+        successRate: 95,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'multiple',
+                question: 'Which mobile money service do you use most frequently?',
+                options: ['M-Pesa', 'Airtel Money', 'Telkom Cash', 'Equity Eazzy Banking', 'KCB M-Pesa', 'Other']
+            },
+            {
+                type: 'text',
+                question: 'What improvements would you like to see in mobile banking services?'
+            },
+            {
+                type: 'rating',
+                question: 'How satisfied are you with the security of your mobile money transactions?',
+                scale: 5
+            },
+            {
+                type: 'text',
+                question: 'What challenges do you face when using digital financial services?'
+            }
+        ]
+    },
+    {
+        id: 'QUEST-002',
+        title: 'Healthcare Services Assessment',
+        description: 'Share your experiences and opinions about healthcare services in your area.',
+        category: 'questionnaire',
+        reward: 150,
+        duration: 10,
+        successRate: 94,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'multiple',
+                question: 'How do you typically access healthcare services?',
+                options: ['Public Hospital', 'Private Hospital', 'Clinic', 'Telemedicine', 'Traditional Healer', 'Chemist', 'Other']
+            },
+            {
+                type: 'text',
+                question: 'What improvements would you suggest for healthcare services in your community?'
+            },
+            {
+                type: 'rating',
+                question: 'How satisfied are you with the quality of healthcare you receive?',
+                scale: 5
+            }
+        ]
+    },
+    {
+        id: 'QUEST-003',
+        title: 'Education System Feedback Questionnaire',
+        description: 'Share your views on the Kenyan education system. 15-minute detailed questionnaire.',
+        category: 'questionnaire',
+        reward: 220,
+        duration: 15,
+        successRate: 92,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'multiple',
+                question: 'What is your highest level of education?',
+                options: ['Primary', 'Secondary', 'Certificate', 'Diploma', 'Degree', 'Postgraduate']
+            },
+            {
+                type: 'text',
+                question: 'What are the biggest challenges facing education in Kenya?'
+            },
+            {
+                type: 'rating',
+                question: 'How prepared were you for the job market after your education?',
+                scale: 5
+            },
+            {
+                type: 'text',
+                question: 'What reforms would you suggest for the education system?'
+            }
+        ]
+    },
+    {
+        id: 'QUEST-004',
+        title: 'Housing & Real Estate Questionnaire',
+        description: 'Share your housing experiences and preferences in Kenya. 10-minute survey.',
+        category: 'questionnaire',
+        reward: 170,
+        duration: 10,
+        successRate: 93,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'multiple',
+                question: 'What is your current housing situation?',
+                options: ['Renting', 'Own Home', 'Family Home', 'Mortgage', 'Employer Provided', 'Other']
+            },
+            {
+                type: 'text',
+                question: 'What are the biggest challenges in finding affordable housing?'
+            },
+            {
+                type: 'rating',
+                question: 'How satisfied are you with your current housing situation?',
+                scale: 5
+            }
+        ]
+    },
+    {
+        id: 'QUEST-005',
+        title: 'Agriculture & Farming Practices',
+        description: 'Questionnaire about farming practices and challenges in Kenya. For farmers and agric enthusiasts.',
+        category: 'questionnaire',
+        reward: 200,
+        duration: 12,
+        successRate: 91,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'multiple',
+                question: 'What type of farming do you engage in?',
+                options: ['Subsistence', 'Commercial', 'Livestock', 'Horticulture', 'Mixed Farming', 'Not a farmer']
+            },
+            {
+                type: 'text',
+                question: 'What are the biggest challenges you face in farming?'
+            },
+            {
+                type: 'rating',
+                question: 'How accessible are farming inputs and markets?',
+                scale: 5
+            },
+            {
+                type: 'text',
+                question: 'What support would help improve farming in Kenya?'
+            }
+        ]
+    },
+    {
+        id: 'ANNO-001',
+        title: 'Product Image Classification',
+        description: 'Categorize product images into predefined categories. No prior experience needed.',
+        category: 'annotation',
+        reward: 200,
+        duration: 8,
+        successRate: 92,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'classification',
+                question: 'What category does this product belong to?',
+                options: ['Electronics', 'Clothing', 'Home & Kitchen', 'Beauty & Personal Care', 'Sports & Outdoors', 'Automotive', 'Other']
+            }
+        ]
+    },
+    {
+        id: 'ANNO-002',
+        title: 'Text Sentiment Analysis',
+        description: 'Read customer reviews and classify them as positive, negative, or neutral.',
+        category: 'annotation',
+        reward: 180,
+        duration: 7,
+        successRate: 94,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'multiple',
+                question: 'What is the sentiment of this text?',
+                options: ['Positive', 'Negative', 'Neutral']
+            }
+        ]
+    },
+    {
+        id: 'ANNO-003',
+        title: 'Swahili Text Translation Check',
+        description: 'Verify if English to Swahili translations are accurate. Must understand Swahili.',
+        category: 'annotation',
+        reward: 220,
+        duration: 10,
+        successRate: 90,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'multiple',
+                question: 'Is this Swahili translation accurate?',
+                options: ['Perfect', 'Mostly Accurate', 'Some Errors', 'Incorrect']
+            },
+            {
+                type: 'text',
+                question: 'If there are errors, please provide correct translation:'
+            }
+        ]
+    },
+    {
+        id: 'ANNO-004',
+        title: 'Local Business Categorization',
+        description: 'Categorize Kenyan businesses into appropriate sectors. Simple task.',
+        category: 'annotation',
+        reward: 160,
+        duration: 6,
+        successRate: 96,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'multiple',
+                question: 'What sector does this business belong to?',
+                options: ['Retail', 'Hospitality', 'Manufacturing', 'Services', 'Agriculture', 'Transport', 'Other']
+            }
+        ]
+    },
+    {
+        id: 'VID-001',
+        title: 'Video Content Review',
+        description: 'Watch short videos and provide feedback on content quality and relevance.',
+        category: 'video',
+        reward: 250,
+        duration: 15,
+        successRate: 90,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'rating',
+                question: 'How engaging was this video content?',
+                scale: 5
+            },
+            {
+                type: 'text',
+                question: 'What did you like or dislike about the video?'
+            }
+        ]
+    },
+    {
+        id: 'VID-002',
+        title: 'Local Advertisement Review',
+        description: 'Watch Kenyan advertisements and provide feedback on effectiveness.',
+        category: 'video',
+        reward: 230,
+        duration: 12,
+        successRate: 91,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'rating',
+                question: 'How effective is this advertisement in delivering its message?',
+                scale: 5
+            },
+            {
+                type: 'text',
+                question: 'Would this ad influence your purchase decision? Why?'
+            }
+        ]
+    },
+    {
+        id: 'AUD-001',
+        title: 'Audio Quality Assessment',
+        description: 'Listen to audio clips and rate their quality. Requires headphones.',
+        category: 'audio',
+        reward: 190,
+        duration: 8,
+        successRate: 93,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'rating',
+                question: 'How would you rate the audio quality?',
+                scale: 5
+            },
+            {
+                type: 'text',
+                question: 'Describe any issues with the audio (background noise, clarity, etc.):'
+            }
+        ]
+    },
+    {
+        id: 'TEXT-001',
+        title: 'Article Summarization',
+        description: 'Read short articles and provide a brief summary in your own words.',
+        category: 'writing',
+        reward: 210,
+        duration: 12,
+        successRate: 89,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'text',
+                question: 'Provide a 2-3 sentence summary of the article:'
+            }
+        ]
+    },
+    {
+        id: 'TEXT-002',
+        title: 'Product Description Writing',
+        description: 'Write short descriptions for Kenyan products. Requires good writing skills.',
+        category: 'writing',
+        reward: 240,
+        duration: 10,
+        successRate: 88,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'text',
+                question: 'Write a compelling product description (50-100 words):'
+            }
+        ]
+    },
+    {
+        id: 'TEXT-003',
+        title: 'Social Media Post Review',
+        description: 'Review social media posts for appropriateness and engagement potential.',
+        category: 'writing',
+        reward: 170,
+        duration: 6,
+        successRate: 95,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'multiple',
+                question: 'Is this social media post appropriate for general audiences?',
+                options: ['Yes', 'No', 'Needs Minor Changes', 'Needs Major Changes']
+            },
+            {
+                type: 'text',
+                question: 'Suggest improvements for better engagement:'
+            }
+        ]
+    },
+    {
+        id: 'TECH-001',
+        title: 'App Feature Testing',
+        description: 'Test new app features and provide feedback on usability.',
+        category: 'testing',
+        reward: 280,
+        duration: 20,
+        successRate: 87,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'rating',
+                question: 'How easy was it to use this feature?',
+                scale: 5
+            },
+            {
+                type: 'text',
+                question: 'Describe any issues you encountered or suggestions for improvement:'
+            }
+        ]
+    },
+    {
+        id: 'TECH-002',
+        title: 'Website Navigation Test',
+        description: 'Navigate a Kenyan website and report on user experience.',
+        category: 'testing',
+        reward: 260,
+        duration: 15,
+        successRate: 89,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'rating',
+                question: 'How would you rate the website navigation?',
+                scale: 5
+            },
+            {
+                type: 'text',
+                question: 'What worked well and what needs improvement?'
+            }
+        ]
+    },
+    {
+        id: 'RES-001',
+        title: 'Market Research Interview',
+        description: 'Participate in a recorded market research interview about consumer trends.',
+        category: 'research',
+        reward: 350,
+        duration: 25,
+        successRate: 85,
+        availability: 'Available now',
+        questions: [
+            {
+                type: 'text',
+                question: 'Describe your typical shopping habits:'
+            },
+            {
+                type: 'text',
+                question: 'What influences your brand choices the most?'
+            },
+            {
+                type: 'text',
+                question: 'What would make you try a new product or service?'
+            }
+        ]
+    },
+    {
+        id: 'RES-002',
+        title: 'Focus Group Discussion',
+        description: 'Join a virtual focus group discussing financial services in Kenya.',
+        category: 'research',
+        reward: 400,
+        duration: 30,
+        successRate: 84,
+        availability: 'Limited spots',
+        questions: [
+            {
+                type: 'text',
+                question: 'What are your main financial goals?'
+            },
+            {
+                type: 'text',
+                question: 'What prevents you from achieving these goals?'
+            },
+            {
+                type: 'text',
+                question: 'What financial products or services are you currently using?'
+            }
+        ]
+    }
+];
+
+// Also update the category labels to include new categories
+function getCategoryLabel(category) {
+    const labels = {
+        'survey': 'Survey',
+        'questionnaire': 'Questionnaire',
+        'annotation': 'Data Annotation',
+        'video': 'Video Task',
+        'audio': 'Audio Task',
+        'writing': 'Writing Task',
+        'testing': 'Testing Task',
+        'research': 'Research Task'
+    };
+    return labels[category] || 'Task';
+}
 
         // DOM elements
         const tasksContainer = document.getElementById('tasksContainer');

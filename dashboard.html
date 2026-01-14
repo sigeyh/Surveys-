@@ -787,7 +787,7 @@
                     SurveyPro
                 </div>
                 <div class="nav-links">
-                    <a href=dashboard.html">Home</a>
+                    <a href="index.html">Home</a>
                     <a href="dashboard.html" class="active">Tasks</a>
                     <a href="earnings.html">Earnings</a>
                     <a href="#">Help</a>
@@ -1177,15 +1177,6 @@
                     name: 'Demo User',
                     email: 'demo@surveypro.co.ke'
                 }));
-                localStorage.setItem('accountActivated', 'true');
-            }
-
-            // Check if account is activated
-            const isActivated = localStorage.getItem('accountActivated') === 'true';
-            if (!isActivated) {
-                alert('Please activate your account to access tasks.');
-                window.location.href = 'deposit.html';
-                return;
             }
 
             // Load user stats
@@ -1212,9 +1203,8 @@
 
             // Check if upgrade modal should be shown
             if (completed >= 3 && localStorage.getItem('userUpgraded') !== 'true') {
-                setTimeout(() => {
-                    showUpgradeModal();
-                }, 500);
+                // Only show upgrade modal after completing 3 tasks, not on page load
+                // This will be triggered when user tries to start a task
             }
         });
 
@@ -1296,9 +1286,34 @@
             document.querySelectorAll('.start-task-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const taskId = this.getAttribute('data-task-id');
-                    openTaskModal(taskId);
+                    startTaskFlow(taskId);
                 });
             });
+        }
+
+        // New function: Handle the complete task flow
+        function startTaskFlow(taskId) {
+            // Check if user has made a deposit
+            const hasDeposited = localStorage.getItem('hasDeposited') === 'true';
+            
+            if (!hasDeposited) {
+                // Redirect to deposit page if no deposit made
+                alert('Please make a deposit first to start earning!');
+                window.location.href = 'deposit.html';
+                return;
+            }
+            
+            // Check if user has completed 3 tasks and needs upgrade
+            const completed = parseInt(localStorage.getItem('completedTasks') || '0');
+            const isUpgraded = localStorage.getItem('userUpgraded') === 'true';
+            
+            if (completed >= 3 && !isUpgraded) {
+                showUpgradeModal();
+                return;
+            }
+            
+            // Otherwise, open the task normally
+            openTaskModal(taskId);
         }
 
         // Get category label
@@ -1434,17 +1449,6 @@
 
         // Open task modal
         function openTaskModal(taskId) {
-            // Check if user has completed 3 tasks and is not upgraded
-            const completed = parseInt(localStorage.getItem('completedTasks') || '0');
-            const isUpgraded = localStorage.getItem('userUpgraded') === 'true';
-            
-            // Block task access if upgrade is required
-            if (completed >= 3 && !isUpgraded) {
-                showUpgradeModal();
-                return;
-            }
-            
-            // Otherwise, show the task modal as normal
             currentTask = tasks.find(task => task.id === taskId);
 
             if (!currentTask) return;
@@ -1502,6 +1506,15 @@
 
         // Submit task
         function submitTask() {
+            // Check if user has made a deposit
+            const hasDeposited = localStorage.getItem('hasDeposited') === 'true';
+            if (!hasDeposited) {
+                alert('Please make a deposit first to start earning!');
+                taskModal.style.display = 'none';
+                window.location.href = 'deposit.html';
+                return;
+            }
+
             // Check if user has reached the task limit
             const completed = parseInt(localStorage.getItem('completedTasks') || '0');
             const isUpgraded = localStorage.getItem('userUpgraded') === 'true';

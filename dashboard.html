@@ -1974,7 +1974,7 @@ function getCategoryLabel(category) {
             // Check if user has made a deposit
             const hasDeposited = localStorage.getItem('hasDeposited') === 'true';
             if (!hasDeposited) {
-                alert('Please make a deposit first to start earning!');
+                alert('Please upgrade  to start earning!');
                 taskModal.style.display = 'none';
                 window.location.href = 'deposit.html';
                 return;

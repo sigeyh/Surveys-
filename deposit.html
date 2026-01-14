@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en-KE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Make Deposit - SurveyPro Kenya</title>
+    <meta name="description" content="Make a deposit to start earning on SurveyPro Kenya. Choose from affordable payment plans and start completing tasks today.">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #4a6bff;
+            --secondary: #ff7e5f;
+            --success: #28a745;
+            --warning: #ffc107;
+            --dark: #333;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --gradient: linear-gradient(135deg, var(--primary), #6a11cb);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fb;
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--gradient);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 32px;
+        }
+
+        .back-to-tasks {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .back-to-tasks:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .deposit-container {
+            padding: 40px 0;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title h1 {
+            font-size: 36px;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .page-title p {
+            color: var(--gray);
+            font-size: 18px;
+        }
+
+        /* Payment Steps */
+        .payment-steps {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 200px;
+        }
+
+        .step-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            border: 3px solid var(--primary);
+        }
+
+        .step.active .step-icon {
+            background: var(--primary);
+            color: white;
+        }
+
+        .step h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .step p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: var(--dark);
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .method-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .method-card {
+            border: 2px solid var(--light-gray);
+            border-radius: 10px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .method-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .method-card.active {
+            border-color: var(--primary);
+            background: rgba(74, 107, 255, 0.05);
+        }
+
+        .method-icon {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .method-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .method-description {
+            color: var(--gray);
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        /* Till Number Section */
+        .till-section {
+            background: linear-gradient(135deg, #4a6bff, #6a11cb);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .till-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .till-number-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .till-number {
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            background: rgba(255,255,255,0.2);
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-family: monospace;
+        }
+
+        .copy-btn {
+            background: white;
+            color: var(--primary);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+        }
+
+        .till-name {
+            font-size: 18px;
+            margin-bottom: 10px;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        /* Payment Plans */
+        .payment-plans {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .plan-card {
+            border: 2px solid var(--light-gray);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .plan-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .plan-card.active {
+            border-color: var(--primary);
+            background: rgba(74, 107, 255, 0.05);
+        }
+
+        .plan-card.popular {
+            border-color: var(--secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card.popular::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: var(--secondary);
+            color: white;
+            padding: 5px 30px;
+            font-size: 12px;
+            font-weight: bold;
+            transform: rotate(45deg);
+        }
+
+        .plan-price {
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .plan-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .plan-features li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .plan-features i {
+            color: var(--success);
+        }
+
+        .select-plan-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .select-plan-btn:hover {
+            background: #3a5bef;
+            transform: translateY(-2px);
+        }
+
+        .select-plan-btn.selected {
+            background: var(--success);
+        }
+
+        /* M-Pesa Message Section */
+        .mpesa-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .mpesa-instructions {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .instructions-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .instructions-list {
+            list-style: decimal;
+            padding-left: 20px;
+        }
+
+        .instructions-list li {
+            margin-bottom: 10px;
+            color: var(--gray);
+        }
+
+        .mpesa-form {
+            margin-top: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 16px;
+            resize: vertical;
+            min-height: 150px;
+            font-family: monospace;
+            transition: border-color 0.3s;
+        }
+
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .example-message {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            margin-top: 15px;
+        }
+
+        .example-message h4 {
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .example-message p {
+            font-family: monospace;
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #3a5bef;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: var(--light-gray);
+            color: var(--dark);
+        }
+
+        .btn-secondary:hover {
+            background: #dee2e6;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .till-number {
+                font-size: 28px;
+                padding: 12px 20px;
+            }
+
+            .copy-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .plans-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-poll"></i>
+                    SurveyPro
+                </div>
+                <a href="dashboard.html" class="back-to-tasks">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Tasks
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="deposit-container">
+        <div class="container">
+            <!-- Page Title -->
+            <div class="page-title fade-in">
+                <h1>Make a Deposit</h1>
+                <p>Deposit to start earning on SurveyPro. Choose your preferred plan and payment method.</p>
+            </div>
+
+            <!-- Payment Steps -->
+            <div class="payment-steps fade-in">
+                <div class="step active">
+                    <div class="step-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Choose Plan</h3>
+                    <p>Select your preferred payment plan</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Make Payment</h3>
+                    <p>Send money via M-Pesa</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Start Earning</h3>
+                    <p>Complete tasks and earn money</p>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="payment-methods fade-in">
+                <h2 class="section-title">Choose Payment Method</h2>
+                <div class="method-cards">
+                    <div class="method-card active" id="mpesaCard">
+                        <div class="method-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="method-title">M-Pesa Till Number</h3>
+                        <p class="method-description">Pay instantly using M-Pesa via our till number. Fast, secure, and convenient.</p>
+                    </div>
+                    <div class="method-card" id="bankCard">
+                        <div class="method-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h3 class="method-title">Bank Transfer</h3>
+                        <p class="method-description">Transfer directly to our bank account. May take 1-2 business days to process.</p>
+                    </div>
+                </div>
+
+                <!-- Till Number Section -->
+                <div class="till-section" id="tillSection">
+                    <h3 class="till-title">Pay via M-Pesa Till Number</h3>
+                    <div class="till-number-container">
+                        <div class="till-number" id="tillNumber">9824375</div>
+                        <button class="copy-btn" id="copyTillBtn">
+                            <i class="fas fa-copy"></i>
+                            Copy Till Number
+                        </button>
+                    </div>
+                    <div class="till-name">Till Name: <strong>HAKIKA R PROVISION</strong></div>
+                    <p style="margin-top: 10px; font-size: 14px; opacity: 0.9;">Use this till number on M-Pesa to make your payment</p>
+                </div>
+            </div>
+
+            <!-- Payment Plans -->
+            <div class="payment-plans fade-in">
+                <h2 class="section-title">Select Your Plan</h2>
+                <div class="plans-grid">
+                    <div class="plan-card" data-amount="200">
+                        <div class="plan-price">KSH 200</div>
+                        <h3 class="plan-title">Basic Plan</h3>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> 7 Days Access</li>
+                            <li><i class="fas fa-check"></i> Up to 10 Tasks Daily</li>
+                            <li><i class="fas fa-check"></i> Standard Support</li>
+                            <li><i class="fas fa-check"></i> Basic Task Categories</li>
+                        </ul>
+                        <button class="select-plan-btn" data-amount="200">Select Plan</button>
+                    </div>
+
+                    <div class="plan-card popular" data-amount="400">
+                        <div class="plan-price">KSH 400</div>
+                        <h3 class="plan-title">Standard Plan</h3>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> 30 Days Access</li>
+                            <li><i class="fas fa-check"></i> Up to 25 Tasks Daily</li>
+                            <li><i class="fas fa-check"></i> Priority Support</li>
+                            <li><i class="fas fa-check"></i> All Task Categories</li>
+                            <li><i class="fas fa-check"></i> Higher Earning Tasks</li>
+                        </ul>
+                        <button class="select-plan-btn" data-amount="400">Select Plan</button>
+                    </div>
+
+                    <div class="plan-card" data-amount="850">
+                        <div class="plan-price">KSH 850</div>
+                        <h3 class="plan-title">Premium Plan</h3>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> 90 Days Access</li>
+                            <li><i class="fas fa-check"></i> Unlimited Tasks Daily</li>
+                            <li><i class="fas fa-check"></i> 24/7 Priority Support</li>
+                            <li><i class="fas fa-check"></i> All Task Categories</li>
+                            <li><i class="fas fa-check"></i> Premium Earning Tasks</li>
+                            <li><i class="fas fa-check"></i> 5% Bonus on Earnings</li>
+                        </ul>
+                        <button class="select-plan-btn" data-amount="850">Select Plan</button>
+                    </div>
+
+                    <div class="plan-card" data-amount="1500">
+                        <div class="plan-price">KSH 1500</div>
+                        <h3 class="plan-title">Ultimate Plan</h3>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> 180 Days Access</li>
+                            <li><i class="fas fa-check"></i> Unlimited Tasks Daily</li>
+                            <li><i class="fas fa-check"></i> VIP Support</li>
+                            <li><i class="fas fa-check"></i> All Task Categories</li>
+                            <li><i class="fas fa-check"></i> Highest Earning Tasks</li>
+                            <li><i class="fas fa-check"></i> 10% Bonus on Earnings</li>
+                            <li><i class="fas fa-check"></i> Early Feature Access</li>
+                        </ul>
+                        <button class="select-plan-btn" data-amount="1500">Select Plan</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- M-Pesa Message Section -->
+            <div class="mpesa-section fade-in">
+                <h2 class="section-title">Submit Your Payment Proof</h2>
+                
+                <div class="mpesa-instructions">
+                    <h3 class="instructions-title">How to Pay via M-Pesa:</h3>
+                    <ol class="instructions-list">
+                        <li>Go to M-Pesa on your phone</li>
+                        <li>Select <strong>Lipa Na M-Pesa</strong></li>
+                        <li>Select <strong>Buy Goods and Services</strong></li>
+                        <li>Enter Till Number: <strong>9824375</strong></li>
+                        <li>Enter the amount for your selected plan</li>
+                        <li>Enter your M-Pesa PIN and send</li>
+                        <li>Wait for confirmation message from M-Pesa</li>
+                        <li>Copy the full message and paste it below</li>
+                    </ol>
+                </div>
+
+                <div class="example-message">
+                    <h4>Example M-Pesa Message:</h4>
+                    <p>KM46DRT8Q7 Confirmed. Ksh200.00 sent to HAKIKA R PROVISION on 14/1/26 at 3:15 PM. New M-PESA balance is Ksh4,520.00. Transaction cost, Ksh0.00. Amount you can transact within the day is 299,800.00. Get a loan on M-PESA.</p>
+                </div>
+
+                <form class="mpesa-form" id="paymentForm">
+                    <div class="form-group">
+                        <label for="selectedPlan">Selected Plan Amount:</label>
+                        <input type="text" id="selectedPlan" readonly placeholder="Select a plan above">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mpesaMessage">Paste M-Pesa Confirmation Message:</label>
+                        <textarea 
+                            id="mpesaMessage" 
+                            placeholder="Paste the complete M-Pesa confirmation message here exactly as received..."
+                            required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phoneNumber">Your Phone Number (Optional):</label>
+                        <input 
+                            type="tel" 
+                            id="phoneNumber" 
+                            placeholder="e.g., 0712 345 678"
+                            pattern="[0-9]{10}"
+                            maxlength="10">
+                    </div>
+                </form>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons fade-in">
+                <button class="btn btn-secondary" id="cancelBtn">
+                    <i class="fas fa-times"></i>
+                    Cancel
+                </button>
+                <button class="btn btn-primary" id="submitPaymentBtn">
+                    <i class="fas fa-paper-plane"></i>
+                    Submit Payment
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SurveyPro</h3>
+                    <p>Your trusted partner for earning money online through surveys, tasks, and questionnaires.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="dashboard.html">Tasks</a></li>
+                        <li><a href="earnings.html">Earnings</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> support@surveypro.co.ke</li>
+                        <li><i class="fas fa-phone"></i> +254 700 123 456</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 SurveyPro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const tillNumberElement = document.getElementById('tillNumber');
+        const copyTillBtn = document.getElementById('copyTillBtn');
+        const planCards = document.querySelectorAll('.plan-card');
+        const selectPlanBtns = document.querySelectorAll('.select-plan-btn');
+        const selectedPlanInput = document.getElementById('selectedPlan');
+        const mpesaMessageTextarea = document.getElementById('mpesaMessage');
+        const submitPaymentBtn = document.getElementById('submitPaymentBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const methodCards = document.querySelectorAll('.method-card');
+
+        // State
+        let selectedPlanAmount = null;
+        let selectedPlanCard = null;
+        let selectedMethod = 'mpesa';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set default selected method
+            document.getElementById('mpesaCard').classList.add('active');
+            
+            // Add event listeners
+            setupEventListeners();
+            
+            // Check if returning from dashboard with a plan selected
+            const urlParams = new URLSearchParams(window.location.search);
+            const planFromDashboard = urlParams.get('package');
+            if (planFromDashboard) {
+                selectPlanByAmount(planFromDashboard);
+            }
+        });
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Copy Till Number
+            copyTillBtn.addEventListener('click', copyTillNumber);
+            
+            // Plan selection
+            planCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    selectPlan(this);
+                });
+            });
+            
+            selectPlanBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const card = this.closest('.plan-card');
+                    selectPlan(card);
+                });
+            });
+            
+            // Payment method selection
+            methodCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    selectPaymentMethod(this);
+                });
+            });
+            
+            // Submit payment
+            submitPaymentBtn.addEventListener('click', submitPayment);
+            
+            // Cancel button
+            cancelBtn.addEventListener('click', function() {
+                window.location.href = 'dashboard.html';
+            });
+            
+            // Auto-format phone number
+            const phoneInput = document.getElementById('phoneNumber');
+            phoneInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 0) {
+                    value = '0' + value.slice(1); // Ensure it starts with 0
+                }
+                if (value.length > 3 && value.length <= 6) {
+                    value = value.slice(0, 4) + ' ' + value.slice(4);
+                } else if (value.length > 6) {
+                    value = value.slice(0, 4) + ' ' + value.slice(4, 7) + ' ' + value.slice(7);
+                }
+                e.target.value = value.slice(0, 12); // Limit to 12 chars (including spaces)
+            });
+        }
+
+        // Copy till number to clipboard
+        function copyTillNumber() {
+            const tillNumber = tillNumberElement.textContent;
+            
+            navigator.clipboard.writeText(tillNumber).then(() => {
+                // Show success feedback
+                const originalText = copyTillBtn.innerHTML;
+                copyTillBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                copyTillBtn.style.background = '#28a745';
+                copyTillBtn.style.color = 'white';
+                
+                // Revert after 2 seconds
+                setTimeout(() => {
+                    copyTillBtn.innerHTML = originalText;
+                    copyTillBtn.style.background = '';
+                    copyTillBtn.style.color = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('Failed to copy till number. Please copy manually: ' + tillNumber);
+            });
+        }
+
+        // Select payment plan
+        function selectPlan(planCard) {
+            // Remove active class from all cards
+            planCards.forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            // Remove selected class from all buttons
+            selectPlanBtns.forEach(btn => {
+                btn.classList.remove('selected');
+                btn.textContent = 'Select Plan';
+            });
+            
+            // Add active class to selected card
+            planCard.classList.add('active');
+            
+            // Update selected button
+            const selectBtn = planCard.querySelector('.select-plan-btn');
+            selectBtn.classList.add('selected');
+            selectBtn.innerHTML = '<i class="fas fa-check"></i> Selected';
+            
+            // Update selected amount
+            selectedPlanAmount = planCard.getAttribute('data-amount');
+            selectedPlanCard = planCard;
+            
+            // Update the selected plan input
+            selectedPlanInput.value = `KSH ${selectedPlanAmount}`;
+            
+            // Scroll to M-Pesa message section
+            document.querySelector('.mpesa-section').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+            
+            // Update step indicator
+            updateSteps(1);
+        }
+
+        // Select plan by amount (for dashboard redirect)
+        function selectPlanByAmount(amount) {
+            const planCard = document.querySelector(`.plan-card[data-amount="${amount}"]`);
+            if (planCard) {
+                selectPlan(planCard);
+            }
+        }
+
+        // Select payment method
+        function selectPaymentMethod(methodCard) {
+            // Remove active class from all cards
+            methodCards.forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            // Add active class to selected card
+            methodCard.classList.add('active');
+            
+            // Update selected method
+            selectedMethod = methodCard.id.replace('Card', '');
+            
+            // Show/hide appropriate sections
+            if (selectedMethod === 'mpesa') {
+                document.getElementById('tillSection').style.display = 'block';
+            } else {
+                document.getElementById('tillSection').style.display = 'none';
+            }
+        }
+
+        // Update step indicators
+        function updateSteps(step) {
+            const steps = document.querySelectorAll('.step');
+            steps.forEach((s, index) => {
+                if (index <= step) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active');
+                }
+            });
+        }
+
+        // Validate M-Pesa message
+        function validateMpesaMessage(message) {
+            // Basic validation - check if it looks like an M-Pesa message
+            const mpesaPatterns = [
+                /Confirmed/i,
+                /Ksh[\d,.]+/i,
+                /sent to/i,
+                /balance/i,
+                /Transaction/i
+            ];
+            
+            let score = 0;
+            mpesaPatterns.forEach(pattern => {
+                if (pattern.test(message)) {
+                    score++;
+                }
+            });
+            
+            return score >= 3; // At least 3 patterns matched
+        }
+
+        // Extract amount from M-Pesa message
+        function extractAmountFromMessage(message) {
+            const amountMatch = message.match(/Ksh([\d,.]+)/i);
+            if (amountMatch) {
+                // Remove commas and convert to number
+                const amountStr = amountMatch[1].replace(/,/g, '');
+                return parseFloat(amountStr);
+            }
+            return null;
+        }
+
+        // Submit payment
+        function submitPayment() {
+            // Validate plan selection
+            if (!selectedPlanAmount) {
+                alert('Please select a payment plan first.');
+                document.querySelector('.payment-plans').scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                return;
+            }
+            
+            // Validate M-Pesa message
+            const mpesaMessage = mpesaMessageTextarea.value.trim();
+            if (!mpesaMessage) {
+                alert('Please paste your M-Pesa confirmation message.');
+                mpesaMessageTextarea.focus();
+                return;
+            }
+            
+            if (!validateMpesaMessage(mpesaMessage)) {
+                if (!confirm('The message you pasted doesn\'t look like a standard M-Pesa confirmation message. Are you sure this is correct?')) {
+                    mpesaMessageTextarea.focus();
+                    return;
+                }
+            }
+            
+            // Extract and validate amount
+            const extractedAmount = extractAmountFromMessage(mpesaMessage);
+            const selectedAmount = parseInt(selectedPlanAmount);
+            
+            if (extractedAmount && extractedAmount !== selectedAmount) {
+                if (!confirm(`The amount in your M-Pesa message (KSH ${extractedAmount}) doesn't match your selected plan (KSH ${selectedAmount}). Continue anyway?`)) {
+                    return;
+                }
+            }
+            
+            // Validate phone number if provided
+            const phoneNumber = document.getElementById('phoneNumber').value.trim();
+            if (phoneNumber) {
+                const cleanPhone = phoneNumber.replace(/\s/g, '');
+                if (cleanPhone.length !== 10 || !cleanPhone.match(/^0[0-9]{9}$/)) {
+                    alert('Please enter a valid 10-digit Kenyan phone number starting with 0.');
+                    document.getElementById('phoneNumber').focus();
+                    return;
+                }
+            }
+            
+            // Show loading state
+            submitPaymentBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            submitPaymentBtn.disabled = true;
+            
+            // Simulate payment processing
+            setTimeout(() => {
+                // Save payment info to localStorage
+                localStorage.setItem('hasDeposited', 'true');
+                localStorage.setItem('depositAmount', selectedPlanAmount);
+                localStorage.setItem('depositDate', new Date().toISOString());
+                localStorage.setItem('userUpgraded', 'true');
+                
+                // Update user balance with initial deposit bonus
+                const currentBalance = parseInt(localStorage.getItem('userBalance') || '0');
+                const bonus = Math.round(selectedAmount * 0.1); // 10% bonus
+                const newBalance = currentBalance + bonus;
+                localStorage.setItem('userBalance', newBalance.toString());
+                
+                // Show success message
+                alert(`Payment successful! Your account has been activated with a KSH ${bonus} bonus. You can now start completing tasks.`);
+                
+                // Redirect to dashboard
+                window.location.href = 'dashboard.html';
+            }, 2000);
+        }
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animation
+        document.querySelectorAll('.payment-methods, .payment-plans, .mpesa-section, .action-buttons').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

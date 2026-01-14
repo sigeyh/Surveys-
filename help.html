@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en-KE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Help Center - SurveyPro Kenya</title>
+    <meta name="description" content="Get help with SurveyPro Kenya. Find answers to frequently asked questions or chat with our AI assistant.">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #4a6bff;
+            --secondary: #ff7e5f;
+            --success: #28a745;
+            --warning: #ffc107;
+            --dark: #333;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --gradient: linear-gradient(135deg, var(--primary), #6a11cb);
+            --chat-bg: #f0f2f5;
+            --user-msg-bg: #4a6bff;
+            --bot-msg-bg: white;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fb;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--gradient);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Main Layout */
+        .help-container {
+            padding: 40px 0;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 40px;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 25px;
+            color: var(--dark);
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .faq-categories {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: var(--light-gray);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .category-btn.active, .category-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .faq-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .faq-item {
+            border: 1px solid var(--light-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item.active {
+            border-color: var(--primary);
+            box-shadow: 0 5px 15px rgba(74, 107, 255, 0.1);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            font-weight: 600;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+            color: var(--primary);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+            background: var(--light);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        /* Chat Bot Section */
+        .chatbot-section {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+        }
+
+        /* Chat Header */
+        .chat-header {
+            background: var(--gradient);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .chat-avatar {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .chat-header-info h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .chat-header-info p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .chat-status {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+        }
+
+        /* Chat Messages */
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: var(--chat-bg);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            display: flex;
+            gap: 10px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .message.bot {
+            align-self: flex-start;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .message.bot .message-avatar {
+            background: var(--primary);
+            color: white;
+        }
+
+        .message.user .message-avatar {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .message-content {
+            padding: 12px 15px;
+            border-radius: 18px;
+            position: relative;
+            word-wrap: break-word;
+        }
+
+        .message.bot .message-content {
+            background: var(--bot-msg-bg);
+            border-top-left-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .message.user .message-content {
+            background: var(--user-msg-bg);
+            color: white;
+            border-top-right-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .message-time {
+            font-size: 11px;
+            opacity: 0.7;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        /* Quick Replies */
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .quick-reply {
+            background: var(--light-gray);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quick-reply:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Chat Input */
+        .chat-input-container {
+            padding: 20px;
+            border-top: 1px solid var(--light-gray);
+            background: white;
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 25px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .chat-input:focus {
+            border-color: var(--primary);
+        }
+
+        .send-btn {
+            width: 45px;
+            height: 45px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+
+        .send-btn:hover {
+            background: #3a5bef;
+            transform: scale(1.05);
+        }
+
+        .send-btn:disabled {
+            background: var(--gray);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes typing {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 10px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--gray);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .help-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .chatbot-section {
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .faq-categories {
+                justify-content: center;
+            }
+
+            .message {
+                max-width: 90%;
+            }
+
+            .chat-header {
+                padding: 15px;
+            }
+
+            .chat-avatar {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .faq-section, .chatbot-section {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .message-content {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+
+            .quick-replies {
+                gap: 5px;
+            }
+
+            .quick-reply {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+
+        /* Custom Scrollbar */
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: var(--light-gray);
+            border-radius: 3px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: var(--gray);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-poll"></i>
+                    SurveyPro
+                </div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="dashboard.html">Tasks</a>
+                    <a href="earnings.html">Earnings</a>
+                    <a href="help.html" class="active">Help</a>
+                    <a href="deposit.html">Deposit</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="help-container">
+            <!-- FAQ Section -->
+            <section class="faq-section">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                
+                <div class="faq-categories">
+                    <button class="category-btn active" data-category="all">All Questions</button>
+                    <button class="category-btn" data-category="account">Account</button>
+                    <button class="category-btn" data-category="payments">Payments</button>
+                    <button class="category-btn" data-category="tasks">Tasks</button>
+                    <button class="category-btn" data-category="earnings">Earnings</button>
+                </div>
+
+                <div class="faq-list">
+                    <!-- Account FAQs -->
+                    <div class="faq-item active" data-category="account">
+                        <div class="faq-question">
+                            How do I create an account?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Creating an account is easy! Just click on the "Sign Up" button on our homepage, enter your email address, create a password, and verify your email. Once verified, you can start completing tasks immediately.
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="account">
+                        <div class="faq-question">
+                            I forgot my password. How can I reset it?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Click on the "Forgot Password" link on the login page. Enter your registered email address, and we'll send you a password reset link. Check your email and follow the instructions to set a new password.
+                        </div>
+                    </div>
+
+                    <!-- Payment FAQs -->
+                    <div class="faq-item" data-category="payments">
+                        <div class="faq-question">
+                            How do I make a deposit?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Go to the Deposit page, select your preferred plan, and use our M-Pesa Till Number: 9824375 (HAKIKA R PROVISION). After payment, paste the M-Pesa confirmation message, and your account will be activated immediately.
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="payments">
+                        <div class="faq-question">
+                            What payment methods do you accept?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            We currently accept M-Pesa payments through our Till Number (9824375). We're working on adding more payment options including bank transfers and credit/debit cards in the near future.
+                        </div>
+                    </div>
+
+                    <!-- Task FAQs -->
+                    <div class="faq-item" data-category="tasks">
+                        <div class="faq-question">
+                            How many tasks can I complete per day?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            It depends on your plan: Basic (10 tasks/day), Standard (25 tasks/day), Premium & Ultimate (unlimited tasks). New tasks are added daily, and you'll see available tasks in your dashboard.
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="tasks">
+                        <div class="faq-question">
+                            What happens if I fail a task?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            If you fail a task (by providing inconsistent or low-quality answers), you won't earn the reward for that task. Your success rate will be affected, but you can continue with other tasks. We recommend taking your time and providing thoughtful answers.
+                        </div>
+                    </div>
+
+                    <!-- Earnings FAQs -->
+                    <div class="faq-item" data-category="earnings">
+                        <div class="faq-question">
+                            How do I withdraw my earnings?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Go to the Earnings page and click "Withdraw". Enter the amount (minimum KSH 100) and your M-Pesa number. Withdrawals are processed within 24 hours on business days. A small transaction fee may apply.
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="earnings">
+                        <div class="faq-question">
+                            What's the minimum withdrawal amount?
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            The minimum withdrawal amount is KSH 100. This helps us keep transaction costs low for everyone. You can accumulate your earnings until you reach this threshold.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chat Bot Section -->
+            <section class="chatbot-section">
+                <!-- Chat Header -->
+                <div class="chat-header">
+                    <div class="chat-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="chat-header-info">
+                        <h3>SurveyPro Assistant</h3>
+                        <div class="chat-status">
+                            <div class="status-dot"></div>
+                            <span>Online - Ready to help</span>
+                        </div>
+                        <p>Ask me anything about SurveyPro</p>
+                    </div>
+                </div>
+
+                <!-- Chat Messages -->
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Initial welcome message -->
+                    <div class="message bot">
+                        <div class="message-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-content">
+                            Hello! 👋 I'm your SurveyPro Assistant. How can I help you today? You can ask me about:
+                            <div class="quick-replies">
+                                <button class="quick-reply" data-question="How do I create an account?">Create Account</button>
+                                <button class="quick-reply" data-question="How to make deposit?">Make Deposit</button>
+                                <button class="quick-reply" data-question="How to withdraw earnings?">Withdraw Money</button>
+                                <button class="quick-reply" data-question="Task completion limit?">Task Limits</button>
+                            </div>
+                            <div class="message-time">Just now</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Input -->
+                <div class="chat-input-container">
+                    <div class="chat-input-wrapper">
+                        <input 
+                            type="text" 
+                            class="chat-input" 
+                            id="chatInput" 
+                            placeholder="Type your question here..."
+                            maxlength="500">
+                        <button class="send-btn" id="sendBtn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SurveyPro</h3>
+                    <p>Your trusted partner for earning money online through surveys, tasks, and questionnaires.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="dashboard.html">Tasks</a></li>
+                        <li><a href="earnings.html">Earnings</a></li>
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="deposit.html">Make Deposit</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="help.html">FAQ</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> support@surveypro.co.ke</li>
+                        <li><i class="fas fa-phone"></i> +254 700 123 456</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 SurveyPro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const faqItems = document.querySelectorAll('.faq-item');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const quickReplies = document.querySelectorAll('.quick-reply');
+
+        // Knowledge Base
+        const knowledgeBase = {
+            // Account Questions
+            'account': {
+                'create account': 'To create an account, visit our homepage and click "Sign Up". Enter your email, create a password, and verify your email. Once verified, you can start completing tasks immediately.',
+                'forgot password': 'Click "Forgot Password" on the login page, enter your email, and check for a reset link. If you don\'t receive it, check your spam folder or contact support.',
+                'change email': 'You can change your email in the Profile section. We\'ll send a verification link to your new email address.',
+                'delete account': 'To delete your account, go to Profile Settings and click "Delete Account". Note: This action is permanent and cannot be undone.'
+            },
+            
+            // Payment Questions
+            'payments': {
+                'make deposit': 'Go to the Deposit page, select your plan, and pay via M-Pesa Till Number: 9824375 (HAKIKA R PROVISION). Paste the M-Pesa message to activate your account.',
+                'payment methods': 'We accept M-Pesa payments through our Till Number. More options coming soon!',
+                'deposit failed': 'If your deposit failed, check: 1) Sufficient M-Pesa balance, 2) Correct till number (9824375), 3) Network connection. If issues persist, contact support.',
+                'refund policy': 'Deposits are non-refundable as they provide immediate access to tasks. However, you can use your balance for future tasks.'
+            },
+            
+            // Task Questions
+            'tasks': {
+                'task limit': 'Daily limits: Basic (10), Standard (25), Premium/Ultimate (unlimited). New tasks added daily.',
+                'fail task': 'Failed tasks don\'t earn rewards. Ensure you provide consistent, thoughtful answers. Your success rate affects available tasks.',
+                'task approval': 'Tasks are reviewed automatically. Most are approved within minutes. Some may take up to 24 hours.',
+                'no tasks available': 'Tasks refresh daily. If none available, check back later or upgrade your plan for more options.'
+            },
+            
+            // Earnings Questions
+            'earnings': {
+                'withdraw earnings': 'Go to Earnings page, click "Withdraw", enter amount (min KSH 100) and M-Pesa number. Processed within 24 hours on business days.',
+                'minimum withdrawal': 'Minimum withdrawal is KSH 100. This helps keep transaction costs low.',
+                'withdrawal fee': 'A small fee may apply: KSH 10 for amounts up to KSH 500, KSH 20 for amounts above KSH 500.',
+                'earnings not showing': 'Earnings update instantly. If not showing, refresh the page or check your transaction history.'
+            },
+            
+            // General Questions
+            'general': {
+                'contact support': 'Email support@surveypro.co.ke or call +254 700 123 456. We respond within 24 hours.',
+                'trust surveypro': 'We\'re registered in Kenya and follow all data protection regulations. Your earnings are guaranteed.',
+                'make money': 'Complete surveys, questionnaires, and data annotation tasks. Earnings vary by task complexity and plan.',
+                'start earning': '1) Sign up, 2) Make deposit, 3) Complete tasks, 4) Withdraw earnings to M-Pesa.'
+            }
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up event listeners
+            setupEventListeners();
+            
+            // Auto-focus chat input on page load
+            setTimeout(() => {
+                chatInput.focus();
+            }, 500);
+        });
+
+        // Set up event listeners
+        function setupEventListeners() {
+            // FAQ accordion
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+
+            // FAQ category filtering
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const category = this.dataset.category;
+                    
+                    // Update active button
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter FAQ items
+                    faqItems.forEach(item => {
+                        if (category === 'all' || item.dataset.category === category) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Quick reply buttons
+            quickReplies.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const question = this.dataset.question;
+                    chatInput.value = question;
+                    sendMessage();
+                });
+            });
+
+            // Send message on button click
+            sendBtn.addEventListener('click', sendMessage);
+
+            // Send message on Enter key
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            // Auto-resize input
+            chatInput.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = (this.scrollHeight) + 'px';
+            });
+
+            // Disable send button when input is empty
+            chatInput.addEventListener('input', function() {
+                sendBtn.disabled = this.value.trim() === '';
+            });
+        }
+
+        // Find answer in knowledge base
+        function findAnswer(question) {
+            const q = question.toLowerCase().trim();
+            
+            // Check each category
+            for (const category in knowledgeBase) {
+                for (const key in knowledgeBase[category]) {
+                    if (q.includes(key) || key.includes(q.split(' ')[0])) {
+                        return knowledgeBase[category][key];
+                    }
+                }
+            }
+            
+            // Check for common variations
+            if (q.includes('hi') || q.includes('hello') || q.includes('hey')) {
+                return 'Hello! 👋 How can I help you today?';
+            }
+            
+            if (q.includes('thank')) {
+                return 'You\'re welcome! Is there anything else I can help you with?';
+            }
+            
+            if (q.includes('bye') || q.includes('goodbye')) {
+                return 'Goodbye! Feel free to come back if you have more questions. Have a great day! 😊';
+            }
+            
+            // Default response for unknown questions
+            return 'I\'m not sure about that. You can try asking differently or check our FAQ section. For specific issues, please contact our support team at support@surveypro.co.ke';
+        }
+
+        // Add typing indicator
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot';
+            typingDiv.innerHTML = `
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <div class="typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            `;
+            chatMessages.appendChild(typingDiv);
+            scrollToBottom();
+            return typingDiv;
+        }
+
+        // Remove typing indicator
+        function removeTypingIndicator(indicator) {
+            indicator.remove();
+        }
+
+        // Add message to chat
+        function addMessage(text, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+            
+            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar">
+                    <i class="fas fa-${isUser ? 'user' : 'robot'}"></i>
+                </div>
+                <div class="message-content">
+                    ${text}
+                    <div class="message-time">${time}</div>
+                </div>
+            `;
+            
+            chatMessages.appendChild(messageDiv);
+            scrollToBottom();
+            
+            return messageDiv;
+        }
+
+        // Add quick reply options
+        function addQuickReplies(messageDiv, category = 'general') {
+            const quickRepliesDiv = document.createElement('div');
+            quickRepliesDiv.className = 'quick-replies';
+            
+            let replies = [];
+            
+            switch(category) {
+                case 'account':
+                    replies = ['Create account', 'Reset password', 'Change email', 'Delete account'];
+                    break;
+                case 'payments':
+                    replies = ['Make deposit', 'Payment methods', 'Deposit failed', 'Refund policy'];
+                    break;
+                case 'tasks':
+                    replies = ['Task limits', 'Failed tasks', 'Task approval', 'No tasks'];
+                    break;
+                case 'earnings':
+                    replies = ['Withdraw money', 'Minimum withdrawal', 'Withdrawal fee', 'Earnings missing'];
+                    break;
+                default:
+                    replies = ['How to start?', 'Make deposit', 'Withdraw earnings', 'Contact support'];
+            }
+            
+            replies.forEach(reply => {
+                const btn = document.createElement('button');
+                btn.className = 'quick-reply';
+                btn.textContent = reply;
+                btn.dataset.question = reply;
+                btn.addEventListener('click', function() {
+                    chatInput.value = this.dataset.question;
+                    sendMessage();
+                });
+                quickRepliesDiv.appendChild(btn);
+            });
+            
+            messageDiv.querySelector('.message-content').appendChild(quickRepliesDiv);
+        }
+
+        // Send message
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            addMessage(message, true);
+            
+            // Clear input
+            chatInput.value = '';
+            chatInput.style.height = 'auto';
+            sendBtn.disabled = true;
+            
+            // Show typing indicator
+            const typingIndicator = showTypingIndicator();
+            
+            // Simulate thinking time
+            setTimeout(() => {
+                removeTypingIndicator(typingIndicator);
+                
+                // Get bot response
+                const response = findAnswer(message);
+                
+                // Add bot response
+                const botMessage = addMessage(response);
+                
+                // Add relevant quick replies
+                if (response.includes('account')) {
+                    addQuickReplies(botMessage, 'account');
+                } else if (response.includes('deposit') || response.includes('payment')) {
+                    addQuickReplies(botMessage, 'payments');
+                } else if (response.includes('task')) {
+                    addQuickReplies(botMessage, 'tasks');
+                } else if (response.includes('earn') || response.includes('withdraw')) {
+                    addQuickReplies(botMessage, 'earnings');
+                } else if (!response.includes('I\'m not sure')) {
+                    addQuickReplies(botMessage, 'general');
+                }
+                
+                // Auto-focus input
+                chatInput.focus();
+            }, 1000 + Math.random() * 1000); // Random delay for natural feel
+        }
+
+        // Scroll to bottom of chat
+        function scrollToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Sample questions for demo
+        const sampleQuestions = [
+            "How do I create an account?",
+            "How to make deposit?",
+            "What's the minimum withdrawal?",
+            "How many tasks can I do?"
+        ];
+
+        // Auto-suggestions
+        let suggestionIndex = 0;
+        function showSuggestion() {
+            if (!chatInput.value.trim()) {
+                chatInput.placeholder = sampleQuestions[suggestionIndex];
+                suggestionIndex = (suggestionIndex + 1) % sampleQuestions.length;
+            }
+        }
+
+        // Rotate suggestions every 5 seconds
+        setInterval(showSuggestion, 5000);
+        showSuggestion(); // Initial suggestion
+    </script>
+</body>
+</html>

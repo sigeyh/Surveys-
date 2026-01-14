@@ -774,10 +774,171 @@
         .touch-active {
             transform: scale(0.98);
             box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-        }
+        } 
+        /* PWA Install Prompt Styles */
+.install-prompt {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    z-index: 9999;
+    animation: slideUp 0.3s ease;
+    border: 1px solid var(--light-gray);
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.install-prompt-content {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+}
+
+.install-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--gradient);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.install-text {
+    flex: 1;
+}
+
+.install-text h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: var(--dark);
+}
+
+.install-text p {
+    font-size: 14px;
+    color: var(--gray);
+    margin: 0;
+}
+
+.install-buttons {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.install-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 14px;
+}
+
+.install-btn.cancel {
+    background: var(--light-gray);
+    color: var(--dark);
+}
+
+.install-btn.cancel:hover {
+    background: #dee2e6;
+}
+
+.install-btn.confirm {
+    background: var(--primary);
+    color: white;
+}
+
+.install-btn.confirm:hover {
+    background: #3a5bef;
+}
+
+.install-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: var(--gray);
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.install-close:hover {
+    background: var(--light-gray);
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+    .install-prompt {
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+    }
+    
+    .install-prompt-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+    
+    .install-buttons {
+        width: 100%;
+    }
+    
+    .install-btn {
+        flex: 1;
+    }
+}
+        
     </style>
 </head>
 <body>
+
+  <!-- PWA Install Prompt -->
+<div id="installPrompt" class="install-prompt" style="display: none;">
+    <div class="install-prompt-content">
+        <div class="install-icon">
+            <i class="fas fa-download"></i>
+        </div>
+        <div class="install-text">
+            <h3>Install SurveyPro App</h3>
+            <p>Install for faster access and better experience</p>
+        </div>
+        <div class="install-buttons">
+            <button id="installCancelBtn" class="install-btn cancel">Later</button>
+            <button id="installConfirmBtn" class="install-btn confirm">Install</button>
+        </div>
+        <button class="install-close" id="installCloseBtn">&times;</button>
+    </div>
+</div>
+    
     <!-- Header -->
     <header>
         <div class="container">
@@ -2051,6 +2212,191 @@ function getCategoryLabel(category) {
             // Refresh tasks to update locked status if needed
             displayTasks(tasks);
         }
+         // PWA Installation Prompt
+let deferredPrompt;
+let installPromptShown = localStorage.getItem('installPromptShown') === 'true';
+let installPromptDismissed = localStorage.getItem('installPromptDismissed') === 'true';
+
+// Listen for beforeinstallprompt event
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Prevent the mini-infobar from appearing on mobile
+    e.preventDefault();
+    
+    // Stash the event so it can be triggered later
+    deferredPrompt = e;
+    
+    // Show install prompt if not already shown or dismissed
+    if (!installPromptShown && !installPromptDismissed) {
+        setTimeout(() => {
+            showInstallPrompt();
+        }, 3000); // Show after 3 seconds
+    }
+});
+
+// Show install prompt
+function showInstallPrompt() {
+    const installPrompt = document.getElementById('installPrompt');
+    if (installPrompt && deferredPrompt) {
+        installPrompt.style.display = 'block';
+        installPromptShown = true;
+        localStorage.setItem('installPromptShown', 'true');
+    }
+}
+
+// Install button handler
+document.getElementById('installConfirmBtn')?.addEventListener('click', async () => {
+    if (deferredPrompt) {
+        // Show the install prompt
+        deferredPrompt.prompt();
+        
+        // Wait for the user to respond to the prompt
+        const { outcome } = await deferredPrompt.userChoice;
+        
+        // Log the outcome
+        console.log(`User response to the install prompt: ${outcome}`);
+        
+        // Hide the install prompt
+        document.getElementById('installPrompt').style.display = 'none';
+        
+        // We've used the prompt, and can't use it again
+        deferredPrompt = null;
+    }
+});
+
+// Cancel button handler
+document.getElementById('installCancelBtn')?.addEventListener('click', () => {
+    document.getElementById('installPrompt').style.display = 'none';
+    localStorage.setItem('installPromptDismissed', 'true');
+});
+
+// Close button handler
+document.getElementById('installCloseBtn')?.addEventListener('click', () => {
+    document.getElementById('installPrompt').style.display = 'none';
+    localStorage.setItem('installPromptDismissed', 'true');
+});
+
+// Check if app is already installed
+window.addEventListener('appinstalled', () => {
+    console.log('SurveyPro was installed successfully!');
+    document.getElementById('installPrompt').style.display = 'none';
+    
+    // Show success message
+    showInstallSuccess();
+});
+
+// Show installation success message
+function showInstallSuccess() {
+    const successMsg = document.createElement('div');
+    successMsg.className = 'install-success';
+    successMsg.innerHTML = `
+        <div class="install-success-content">
+            <i class="fas fa-check-circle"></i>
+            <span>SurveyPro installed successfully!</span>
+        </div>
+    `;
+    
+    // Add styles for success message
+    const style = document.createElement('style');
+    style.textContent = `
+        .install-success {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 10000;
+            animation: slideInRight 0.3s ease;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .install-success-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .install-success-content i {
+            font-size: 20px;
+        }
+    `;
+    
+    document.head.appendChild(style);
+    document.body.appendChild(successMsg);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+        successMsg.style.animation = 'slideInRight 0.3s ease reverse';
+        setTimeout(() => {
+            successMsg.remove();
+        }, 300);
+    }, 3000);
+}
+
+// Detect if running as standalone PWA
+function isRunningAsPWA() {
+    return window.matchMedia('(display-mode: standalone)').matches || 
+           window.navigator.standalone === true ||
+           document.referrer.includes('android-app://');
+}
+
+// If already running as PWA, don't show prompt
+if (isRunningAsPWA()) {
+    installPromptDismissed = true;
+    localStorage.setItem('installPromptDismissed', 'true');
+}
+
+        // Show install button in navigation
+function showInstallNavButton() {
+    const installNavBtn = document.getElementById('installNavBtn');
+    if (installNavBtn && deferredPrompt && !isRunningAsPWA()) {
+        installNavBtn.style.display = 'flex';
+        installNavBtn.style.alignItems = 'center';
+        installNavBtn.style.gap = '5px';
+        
+        installNavBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log(`User response: ${outcome}`);
+                deferredPrompt = null;
+                installNavBtn.style.display = 'none';
+            }
+        });
+    }
+}
+
+// Call this when beforeinstallprompt fires
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    showInstallNavButton();
+});
+      // Register service worker
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+                console.log('ServiceWorker registration successful');
+            })
+            .catch(err => {
+                console.log('ServiceWorker registration failed: ', err);
+            });
+    });
+}  
     </script>
 </body>
 </html>
